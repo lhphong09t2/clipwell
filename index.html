@@ -3,103 +3,1316 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Clipwell — Clean Markdown, Table &amp; AI Thread Clipper</title>
-  <meta name="description" content="Clip articles, intact HTML/ARIA tables, and AI conversation threads to clean Markdown, CSV, or Google Sheets TSV locally with activeTab privacy." />
+  <meta name="theme-color" content="#090d16" />
+  <title>Clipwell — Clean Markdown, Intact Table &amp; AI Thread Clipper for Chrome</title>
+  <meta name="description" content="Clip documentation, intact HTML colspan/rowspan &amp; ARIA tables, and ChatGPT/Claude threads to clean Markdown, CSV, or Google Sheets TSV locally with Chrome activeTab privacy." />
+  <link rel="canonical" href="https://lhphong09t2.github.io/clipwell/" />
+  <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Clipwell by FlowBench Lab" />
+  <meta property="og:title" content="Clipwell — Clean Markdown, Intact Table &amp; AI Thread Clipper" />
+  <meta property="og:description" content="Extract clean Markdown, intact HTML/ARIA tables (CSV &amp; Google Sheets TSV), and ChatGPT/Claude turns locally on the tab you click. Zero all-sites tracking." />
+  <meta property="og:url" content="https://lhphong09t2.github.io/clipwell/" />
+  <meta property="og:image" content="https://lhphong09t2.github.io/clipwell/og-card-1200x630.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Clipwell Chrome Extension — Clean Markdown, Intact Tables &amp; AI Chat Threads" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Clipwell — Clean Markdown, Intact Table &amp; AI Thread Clipper" />
+  <meta name="twitter:description" content="Extract clean Markdown, intact HTML/ARIA tables (CSV &amp; Google Sheets TSV), and ChatGPT/Claude turns locally with Chrome activeTab privacy." />
+  <meta name="twitter:url" content="https://lhphong09t2.github.io/clipwell/" />
+  <meta name="twitter:image" content="https://lhphong09t2.github.io/clipwell/og-card-1200x630.png" />
+  <meta name="twitter:image:alt" content="Clipwell Chrome Extension — Clean Markdown, Intact Tables &amp; AI Chat Threads" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Clipwell — Clean Markdown, Table & AI Thread Clipper",
+        "operatingSystem": "Chrome, Brave, Edge, Arc, Chromium",
+        "applicationCategory": "BrowserApplication",
+        "softwareVersion": "1.0.0",
+        "url": "https://lhphong09t2.github.io/clipwell/",
+        "installUrl": "https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma",
+        "downloadUrl": "https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma",
+        "image": "https://lhphong09t2.github.io/clipwell/og-card-1200x630.png",
+        "screenshot": "https://lhphong09t2.github.io/clipwell/ui-showcase.png",
+        "description": "Chrome Manifest V3 extension that extracts clean Markdown with YAML frontmatter, intact HTML colspan/rowspan & ARIA tables (CSV/TSV/Markdown), and separated AI chat threads locally using activeTab privacy.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "FlowBench Lab",
+          "url": "https://lhphong09t2.github.io/clipwell/",
+          "email": "lhphong09t2@gmail.com",
+          "sameAs": [
+            "https://www.youtube.com/@FlowBenchLab",
+            "https://www.facebook.com/profile.php?id=61596629317479"
+          ]
+        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Clipwell Free Core",
+            "price": "0",
+            "priceCurrency": "USD",
+            "url": "https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma"
+          },
+          {
+            "@type": "Offer",
+            "name": "Clipwell Pro — Lifetime License",
+            "price": "29.00",
+            "priceCurrency": "USD",
+            "url": "https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why does Clipwell use activeTab instead of all-sites permissions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Clipwell requests only Chrome activeTab, scripting, and local storage permissions. It never injects background scripts on pages you visit and reads DOM content exclusively on the active tab when you open the Clipwell popup."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Clipwell preserve merged HTML colspan and rowspan tables?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Clipwell expands colspan and rowspan attributes and ARIA grid widgets into normalized rectangular rows, escaping literal pipes and internal line breaks for clean Pipe Markdown, Google Sheets TSV, or RFC 4180 CSV."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I activate my CLIP-XXXX-XXXX-XXXX Pro license key?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open the Clipwell popup in Chrome, select the Batch & Pro tab, paste your CLIP-XXXX-XXXX-XXXX key from Polar.sh, and click Activate. Each key supports up to 5 concurrent devices with 12-hour revalidation and a 7-day offline grace window."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <style>
-    :root { --bg:#0b1120; --surface:#111827; --card:#1e293b; --border:#334155; --text:#f8fafc; --muted:#94a3b8; --accent:#10b981; --accent2:#34d399; }
-    * { box-sizing:border-box; }
-    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
-    .wrap { max-width:920px; margin:0 auto; padding:36px 20px 64px; }
-    nav { display:flex; justify-content:space-between; align-items:center; margin-bottom:44px; padding-bottom:16px; border-bottom:1px solid var(--border); }
-    .brand { display:flex; align-items:center; gap:12px; font-weight:800; font-size:18px; color:var(--text); text-decoration:none; }
-    .links { display:flex; gap:18px; font-size:14px; }
-    .links a { color:var(--muted); text-decoration:none; }
-    .links a:hover { color:var(--accent2); }
-    .pill { display:inline-block; background:rgba(16,185,129,.12); color:var(--accent2); border:1px solid rgba(16,185,129,.35); padding:4px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.04em; }
-    h1 { font-size:42px; line-height:1.12; margin:16px 0 14px; letter-spacing:-.02em; }
-    .lead { font-size:18px; color:var(--muted); max-width:720px; margin:0 0 28px; }
-    .cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:44px; }
-    .btn { display:inline-block; padding:12px 20px; border-radius:8px; font-weight:700; text-decoration:none; font-size:15px; }
-    .btn.primary { background:var(--accent); color:#052e16; }
-    .btn.secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-bottom:40px; }
-    .card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; }
-    .card h2 { margin:0 0 8px; font-size:17px; color:var(--accent2); }
-    .card p { margin:0; font-size:14px; color:var(--muted); }
-    .pricing { background:var(--card); border:1px solid var(--accent); border-radius:14px; padding:24px; margin-bottom:40px; }
-    .pricing h2 { margin:0 0 8px; font-size:22px; }
-    ul { padding-left:20px; margin:10px 0 0; color:#cbd5e1; font-size:14.5px; }
-    footer { border-top:1px solid var(--border); padding-top:22px; color:var(--muted); font-size:13px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; }
-    footer a { color:var(--accent2); text-decoration:none; }
+    :root {
+      color-scheme: dark;
+      --bg: #090d16;
+      --surface: #0f1624;
+      --surface-2: #141d2f;
+      --card: #182338;
+      --border: rgba(148, 163, 184, 0.15);
+      --border-strong: rgba(148, 163, 184, 0.28);
+      --border-emerald: rgba(16, 185, 129, 0.42);
+      --text: #f8fafc;
+      --text-soft: #cbd5e1;
+      --muted: #94a3b8;
+      --subtle: #64748b;
+      --accent: #10b981;
+      --accent-hover: #34d399;
+      --accent-ink: #032215;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      background-color: #090d16;
+      scroll-behavior: smooth;
+      scroll-padding-top: 84px;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      background-color: #090d16;
+      background-image:
+        radial-gradient(920px 420px at 50% 0%, rgba(16, 185, 129, 0.13), #090d16 72%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent-hover); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(9, 13, 22, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-height: 44px;
+    }
+    .brand:hover { text-decoration: none; color: var(--text); }
+    .brand svg { flex-shrink: 0; border-radius: 7px; }
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 6px 2px;
+      transition: color 0.15s ease;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 14px;
+      min-height: 38px;
+      border-radius: 9px;
+      background-color: var(--accent);
+      color: var(--accent-ink);
+      font-size: 13.5px;
+      font-weight: 700;
+      white-space: nowrap;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+    .nav-cta:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: var(--accent-ink);
+      text-decoration: none;
+    }
+
+    /* Responsive Nav Isolation (Strict Validator Safety) */
+    .mobile-nav-only { display: none; }
+    .mobile-nav-only summary::-webkit-details-marker { display: none; }
+    summary { list-style: none; }
+
+    .mobile-menu-btn {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .mobile-menu-btn:hover { border-color: var(--accent-hover); }
+    .mobile-menu-panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 16px;
+      right: 16px;
+      background-color: #0f1624;
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-menu-panel a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      color: var(--text-soft);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .mobile-menu-panel a:hover {
+      background-color: var(--surface-2);
+      color: var(--text);
+      text-decoration: none;
+    }
+    .mobile-menu-panel .mobile-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-menu-panel .btn {
+      width: 100%;
+      justify-content: center;
+      min-height: 44px;
+    }
+
+    @media (max-width: 760px) {
+      .desktop-nav-only { display: none; }
+      .mobile-nav-only { display: block; }
+      .header-inner { padding: 10px 16px; }
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px 72px;
+    }
+    @media (max-width: 420px) {
+      .container { padding: 0 16px 56px; }
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 48px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background-color: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.32);
+      color: #6ee7b7;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      max-width: 100%;
+    }
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: var(--accent-hover);
+      flex-shrink: 0;
+    }
+    .hero h1 {
+      margin: 20px auto 18px;
+      max-width: 880px;
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .hero h1 .emerald-accent { color: var(--accent-hover); }
+    .hero-lead {
+      margin: 0 auto 30px;
+      max-width: 720px;
+      font-size: clamp(16px, 2vw, 18.5px);
+      line-height: 1.62;
+      color: var(--muted);
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 22px;
+      min-height: 48px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+    .btn:hover { text-decoration: none; }
+    .btn-primary {
+      background-color: var(--accent);
+      color: var(--accent-ink);
+      border: 1px solid var(--accent);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.22);
+    }
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      color: var(--accent-ink);
+    }
+    .btn-secondary {
+      background-color: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+    }
+    .btn-secondary:hover {
+      background-color: var(--card);
+      border-color: var(--accent-hover);
+      color: var(--text);
+    }
+    .hero-subnote {
+      font-size: 13.5px;
+      color: var(--subtle);
+      margin: 0 0 42px;
+    }
+    .hero-subnote a {
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+    .hero-subnote a:hover { color: var(--accent-hover); }
+
+    @media (max-width: 540px) {
+      .hero { padding: 36px 0 36px; }
+      .hero-ctas { flex-direction: column; align-items: stretch; }
+      .hero-ctas .btn { width: 100%; }
+    }
+
+    /* Framed UI Showcase */
+    .showcase-shell {
+      max-width: 1020px;
+      margin: 0 auto;
+      border-radius: 18px;
+      padding: 8px;
+      background-color: rgba(20, 29, 47, 0.72);
+      border: 1px solid var(--border-strong);
+      box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.58),
+        0 0 0 1px rgba(16, 185, 129, 0.12);
+    }
+    .showcase-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 12px 12px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .window-dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .dot-r { background-color: #ef4444; }
+    .dot-y { background-color: #f59e0b; }
+    .dot-g { background-color: #10b981; }
+    .showcase-url {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: var(--muted);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .showcase-status {
+      color: var(--accent-hover);
+      font-weight: 700;
+      font-size: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .showcase-img-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background-color: var(--bg);
+    }
+    .showcase-img-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    @media (max-width: 560px) {
+      .showcase-status { font-size: 11px; }
+      .showcase-bar { flex-wrap: wrap; }
+    }
+
+    /* Section Headers */
+    .section {
+      padding: 64px 0 0;
+    }
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+    .section-kicker {
+      display: inline-block;
+      color: var(--accent-hover);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3.4vw, 34px);
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+    .section-head p {
+      margin: 0;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .bento-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 0;
+      transition: border-color 0.15s ease;
+    }
+    .bento-card:hover { border-color: var(--border-strong); }
+    .span-7 { grid-column: span 7; }
+    .span-6 { grid-column: span 6; }
+    .span-5 { grid-column: span 5; }
+    .bento-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      background-color: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--accent-hover);
+    }
+    .bento-card h3 {
+      margin: 8px 0 8px;
+      font-size: 19px;
+      line-height: 1.28;
+      letter-spacing: -0.015em;
+      color: var(--text);
+    }
+    .bento-card p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+    .code-mini {
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-soft);
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    @media (max-width: 900px) {
+      .span-7, .span-6, .span-5 { grid-column: span 6; }
+    }
+    @media (max-width: 640px) {
+      .span-7, .span-6, .span-5 { grid-column: span 12; }
+      .bento-card { padding: 20px; }
+    }
+
+    /* Plan Cards + Semantic Comparison Table */
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .plan-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      min-width: 0;
+    }
+    .plan-card.pro {
+      background-color: var(--surface-2);
+      border-color: var(--border-emerald);
+      box-shadow: 0 18px 44px rgba(16, 185, 129, 0.09);
+    }
+    .plan-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .plan-name {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .plan-price {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .plan-price span {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .plan-desc {
+      margin: 0 0 14px;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+    .plan-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text-soft);
+      font-size: 14px;
+      display: grid;
+      gap: 8px;
+    }
+    @media (max-width: 720px) {
+      .plan-grid { grid-template-columns: minmax(0, 1fr); }
+      .plan-card { padding: 20px; }
+    }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background-color: var(--surface);
+    }
+    table.compare-table {
+      width: 100%;
+      min-width: 620px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .compare-table th, .compare-table td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .compare-table th {
+      background-color: var(--surface-2);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .compare-table th.pro-col { color: var(--accent-hover); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td { color: var(--text-soft); }
+    .compare-table td.muted-cell { color: var(--muted); }
+    .compare-table td.pro-val { color: #6ee7b7; font-weight: 600; }
+    .compare-table code {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    /* 3-Step Activation Guide */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .step-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      min-width: 0;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background-color: rgba(16, 185, 129, 0.14);
+      border: 1px solid var(--border-emerald);
+      color: var(--accent-hover);
+      font-weight: 800;
+      font-size: 13.5px;
+      margin-bottom: 14px;
+    }
+    .step-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: var(--text);
+    }
+    .step-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .key-pill {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 10px;
+      border-radius: 7px;
+      background-color: var(--bg);
+      border: 1px solid var(--border-strong);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--accent-hover);
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 840px) {
+      .steps-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+    .faq-item {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0 20px;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      padding: 18px 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 48px;
+    }
+    .faq-plus {
+      color: var(--accent-hover);
+      font-weight: 800;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .faq-body {
+      padding: 0 0 18px;
+      font-size: 14.5px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    /* Support Callout */
+    .support-banner {
+      margin-top: 56px;
+      background-color: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .support-banner h2 {
+      margin: 0 0 6px;
+      font-size: 21px;
+      color: var(--text);
+    }
+    .support-banner p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    /* Unified Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background-color: #070a12;
+      padding: 48px 20px 36px;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-brand p {
+      margin: 10px 0 0;
+      font-size: 13.5px;
+      color: var(--muted);
+      max-width: 320px;
+    }
+    .footer-col h3 {
+      margin: 0 0 12px;
+      font-size: 12.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+    .footer-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .footer-col a {
+      color: var(--muted);
+      font-size: 13.5px;
+      text-decoration: none;
+      display: inline-block;
+      padding: 2px 0;
+    }
+    .footer-col a:hover {
+      color: var(--accent-hover);
+      text-decoration: none;
+    }
+    .footer-bottom {
+      padding-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--subtle);
+    }
+    @media (max-width: 820px) {
+      .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .footer-grid { grid-template-columns: minmax(0, 1fr); }
+      .site-footer { padding: 36px 16px 28px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <nav>
+  <header class="site-header">
+    <div class="header-inner">
       <a class="brand" href="./">
         <svg viewBox="0 0 128 128" width="28" height="28" aria-hidden="true">
-          <rect x="0" y="0" width="128" height="128" rx="28" fill="#0B1120"/>
-          <rect x="16" y="22" width="96" height="88" rx="16" fill="#1E293B" stroke="#10B981" stroke-width="6"/>
-          <rect x="40" y="10" width="48" height="18" rx="8" fill="#10B981"/>
-          <rect x="28" y="42" width="72" height="14" rx="4" fill="#F8FAFC"/>
-          <rect x="28" y="64" width="42" height="12" rx="4" fill="#10B981"/>
-          <rect x="76" y="64" width="24" height="12" rx="4" fill="#94A3B8"/>
-          <rect x="28" y="84" width="42" height="12" rx="4" fill="#94A3B8"/>
-          <rect x="76" y="84" width="24" height="12" rx="4" fill="#34D399"/>
+          <rect x="0" y="0" width="128" height="128" rx="28" fill="#090D16"/>
+          <rect x="18" y="24" width="92" height="86" rx="16" fill="#111827" stroke="#10B981" stroke-width="6"/>
+          <rect x="42" y="12" width="44" height="18" rx="9" fill="#10B981"/>
+          <rect x="30" y="44" width="68" height="13" rx="4" fill="#F8FAFC"/>
+          <rect x="30" y="65" width="40" height="11" rx="3.5" fill="#10B981"/>
+          <rect x="76" y="65" width="22" height="11" rx="3.5" fill="#64748B"/>
+          <rect x="30" y="84" width="40" height="11" rx="3.5" fill="#94A3B8"/>
+          <rect x="76" y="84" width="22" height="11" rx="3.5" fill="#34D399"/>
         </svg>
-        Clipwell
+        <span>Clipwell</span>
       </a>
-      <div class="links">
-        <a href="./table-cleaner.html">Table Cleaner</a>
-        <a href="#pricing">Pro License</a>
-        <a href="#support">Support</a>
-        <a href="./privacy.html">Privacy Policy</a>
+
+      <div class="desktop-nav desktop-nav-only">
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#features">Features</a>
+          <a href="./table-cleaner.html">Table Cleaner</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#activate">Activate Key</a>
+          <a href="./privacy.html">Privacy</a>
+        </nav>
+        <a class="nav-cta" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
       </div>
-    </nav>
 
-    <span class="pill">CHROME MANIFEST V3 · ACTIVETAB ONLY</span>
-    <h1>Clean Markdown, Intact Tables &amp; AI Threads Without All-Sites Tracking</h1>
-    <p class="lead">Built by FlowBench Lab. Clip documentation, HTML/ARIA tables (colspan &amp; rowspan intact), and ChatGPT/Claude turns into clean Markdown, CSV, or Sheet-ready TSV directly on the active tab you click.</p>
-
-    <div class="cta-row">
-      <a class="btn primary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" rel="noopener">Get Clipwell Pro ($29 one-time)</a>
-      <a class="btn secondary" href="./table-cleaner.html">Free Table Cleaner</a>
-      <a class="btn secondary" href="./privacy.html">Read Privacy Policy</a>
+      <details class="mobile-nav-only" id="mobile-nav">
+        <summary class="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
+        </summary>
+        <nav class="mobile-menu-panel" aria-label="Mobile navigation">
+          <a href="#features">Features</a>
+          <a href="./table-cleaner.html">Free Table Cleaner</a>
+          <a href="#pricing">Free vs Pro Pricing</a>
+          <a href="#activate">License Activation</a>
+          <a href="#faq">FAQ</a>
+          <a href="./privacy.html">Privacy Policy</a>
+          <div class="mobile-cta-group">
+            <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
+            <a class="btn btn-secondary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Unlock Pro Lifetime &mdash; $29</a>
+          </div>
+        </nav>
+      </details>
     </div>
+  </header>
 
-    <div class="grid">
-      <div class="card">
-        <h2>Zero All-Sites Access</h2>
-        <p>Uses Chrome activeTab + scripting only when you open the popup. Never runs background scrapers, telemetry, or remote page uploads.</p>
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>Chrome Manifest V3 &middot; ActiveTab Only &middot; Zero Tracking</span>
       </div>
-      <div class="card">
-        <h2>Intact Multi-Column Tables</h2>
-        <p>Normalizes HTML &lt;table&gt; (including colspan &amp; rowspan) and ARIA grid widgets into aligned Markdown tables, CSV downloads, and one-click Google Sheets TSV.</p>
-      </div>
-      <div class="card">
-        <h2>AI Thread Separation</h2>
-        <p>Detects ChatGPT and Claude turns automatically and formats clean ### User and ### Assistant headings ready for Notion or Obsidian.</p>
-      </div>
-    </div>
+      <h1>Clean Markdown, Intact Tables &amp; <span class="emerald-accent">AI Threads</span> Without All-Sites Tracking</h1>
+      <p class="hero-lead">Built by <strong>FlowBench Lab</strong>. Extract documentation, merged HTML <code>colspan</code>/<code>rowspan</code> &amp; ARIA tables, and ChatGPT/Claude conversation turns into clean Markdown, Google Sheets TSV, or RFC 4180 CSV locally on the active tab you click.</p>
 
-    <section id="pricing" class="pricing">
-      <h2>Free Core + Clipwell Pro ($29 One-Time Lifetime License)</h2>
-      <ul>
-        <li><strong>Free forever on active tab:</strong> Unlimited Markdown preview with optional YAML frontmatter, AI thread formatting, and single-table TSV/CSV/Markdown copy &amp; download.</li>
-        <li><strong>Clipwell Pro ($29 once via Polar.sh):</strong> Multi-page Research Clip Queue Bundle (collect pages incrementally across tabs and export one combined Markdown dossier) plus Batch Export All Tables on the active page.</li>
-        <li><strong>Offline friendly:</strong> Up to 5 device activations per key with 12-hour revalidation and a 7-day offline grace window.</li>
-      </ul>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="10" cy="10" r="8"/>
+            <circle cx="10" cy="10" r="3"/>
+            <line x1="10" y1="7" x2="17" y2="7"/>
+          </svg>
+          <span>Add to Chrome &mdash; Free</span>
+        </a>
+        <a class="btn btn-secondary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">
+          <span>Unlock Pro Lifetime &mdash; $29</span>
+        </a>
+      </div>
+      <p class="hero-subnote">Free core forever &middot; Works on Chrome, Brave, Arc &amp; Edge &middot; Need browser-only paste cleanup? <a href="./table-cleaner.html">Open Free Table Cleaner &rarr;</a></p>
+
+      <div class="showcase-shell">
+        <div class="showcase-bar">
+          <div class="window-dots" aria-hidden="true">
+            <span class="dot-r"></span>
+            <span class="dot-y"></span>
+            <span class="dot-g"></span>
+          </div>
+          <div class="showcase-url">Clipwell v1.0.0 &mdash; Active Tab Local Extractor</div>
+          <div class="showcase-status">0 KB Telemetry</div>
+        </div>
+        <div class="showcase-img-wrap">
+          <img src="./ui-showcase.png" alt="Clipwell Chrome extension extracting a vendor pricing matrix into clean Markdown with YAML frontmatter and intact pipe tables" width="1280" height="800" loading="eager" decoding="async" />
+        </div>
+      </div>
     </section>
 
-    <section id="support" class="card">
-      <h2>Support &amp; Publisher</h2>
-      <p>Published by <strong>FlowBench Lab</strong>. For license help, bug reports, or privacy requests, email <a href="mailto:lhphong09t2@gmail.com" style="color:#34d399;">lhphong09t2@gmail.com</a> or follow workflows on <a href="https://www.youtube.com/@FlowBenchLab" style="color:#34d399;" rel="noopener">YouTube (@FlowBenchLab)</a>.</p>
+    <section id="features" class="section">
+      <div class="section-head">
+        <span class="section-kicker">Architecture &amp; Craft</span>
+        <h2>Engineered for Technical Docs, Messy Grids &amp; AI Research</h2>
+        <p>Every parser runs in-memory inside your browser popup so internal dashboards, vendor matrices, and private AI prompts never leave your machine.</p>
+      </div>
+
+      <div class="bento-grid">
+        <article class="bento-card span-7">
+          <div>
+            <span class="bento-badge">HTML &amp; ARIA Grid Engine</span>
+            <h3>Merged <code>colspan</code> &amp; <code>rowspan</code> Tables Stay Rectangular</h3>
+            <p>Standard web clippers shatter multi-header pricing tables and ARIA <code>[role="grid"]</code> widgets. Clipwell resolves spanned cells into aligned GFM Pipe Markdown, one-click Google Sheets TSV, or RFC 4180 CSV.</p>
+          </div>
+          <pre class="code-mini">| Vendor         | Monthly | Seats    | Notes                     |
+| -------------- | ------- | -------- | ------------------------- |
+| Northstar Ops  | $29/mo  | 5 seats  | Escapes literal \| pipes  |
+| Local Runtime  | $0 Free | Unlimited| Zero remote page upload   |</pre>
+        </article>
+
+        <article class="bento-card span-5">
+          <div>
+            <span class="bento-badge">Least-Privilege Security</span>
+            <h3>Zero <code>&lt;all_urls&gt;</code> Host Access</h3>
+            <p>Uses Chrome Manifest V3 <code>activeTab</code> + <code>scripting</code> exclusively when you click the toolbar icon. Zero background service-worker scraping, zero analytics SDKs, and zero remote DOM uploads.</p>
+          </div>
+          <pre class="code-mini">"permissions": [
+  "activeTab", "scripting", "storage"
+]</pre>
+        </article>
+
+        <article class="bento-card span-5">
+          <div>
+            <span class="bento-badge">Obsidian &amp; Notion Ready</span>
+            <h3>AI Chat Turn Separation</h3>
+            <p>Automatically detects ChatGPT and Claude conversation structure, separating prompts and answers under clean <code>### User</code> and <code>### Assistant</code> headings with YAML metadata.</p>
+          </div>
+        </article>
+
+        <article class="bento-card span-7">
+          <div>
+            <span class="bento-badge">Clipwell Pro Workflow</span>
+            <h3>Multi-Page Research Clip Queue &amp; Batch Table Export</h3>
+            <p>Queue articles, API docs, and AI threads incrementally across tabs into <code>chrome.storage.local</code> and export one unified Markdown dossier, or batch-export every table on a dense benchmark page in 1 click.</p>
+          </div>
+        </article>
+
+        <article class="bento-card span-6">
+          <div>
+            <span class="bento-badge">Structured Frontmatter</span>
+            <h3>YAML Metadata &amp; Deterministic Timestamps</h3>
+            <p>Toggle automatic <code>title</code>, canonical <code>source</code> URL, ISO-8601 <code>clipped_at</code> timestamp (<time datetime="2026-11-21">2026-11-21</time>), and detected table count at the top of every note.</p>
+          </div>
+        </article>
+
+        <article class="bento-card span-6">
+          <div>
+            <span class="bento-badge">Companion Web Utility</span>
+            <h3>Zero-Install Browser Table Cleaner</h3>
+            <p>Working on a locked-down guest browser or cleaning raw CSV/TSV snippets? Use our client-side <a href="./table-cleaner.html">CSV, TSV &amp; HTML Table Cleaner</a> with identical <code>colspan</code> normalization.</p>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <footer>
-      <span>&copy; 2026 FlowBench Lab · Clipwell</span>
-      <span><a href="./table-cleaner.html">Table Cleaner</a> · <a href="./privacy.html">Privacy Policy</a> · <a href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" rel="noopener">Polar Checkout</a></span>
-    </footer>
-  </div>
+    <section id="pricing" class="section">
+      <div class="section-head">
+        <span class="section-kicker">Simple Lifetime Licensing</span>
+        <h2>Generous Free Core. One-Time $29 Pro Upgrade.</h2>
+        <p>No recurring SaaS fatigue, no cloud account lock-in, and no seat telemetry.</p>
+      </div>
+
+      <div class="plan-grid">
+        <div class="plan-card">
+          <div>
+            <div class="plan-top">
+              <span class="plan-name">Clipwell Free</span>
+              <span class="plan-price">$0 <span>forever</span></span>
+            </div>
+            <p class="plan-desc">Complete single-tab clipping for daily engineering docs, spreadsheets, and AI notes.</p>
+            <ul class="plan-list">
+              <li>Unlimited active-tab Markdown preview, copy &amp; <code>.md</code> download</li>
+              <li>Optional YAML frontmatter (title, URL, ISO timestamp, table count)</li>
+              <li>Single HTML/ARIA table export to Google Sheets TSV, CSV &amp; Markdown</li>
+              <li>ChatGPT &amp; Claude conversation turn separation</li>
+            </ul>
+          </div>
+          <a class="btn btn-secondary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
+        </div>
+
+        <div class="plan-card pro">
+          <div>
+            <div class="plan-top">
+              <span class="plan-name">Clipwell Pro Lifetime</span>
+              <span class="plan-price">$29 <span>one-time</span></span>
+            </div>
+            <p class="plan-desc">Multi-tab research dossiers and full-page batch table extraction via Polar.sh.</p>
+            <ul class="plan-list">
+              <li>Everything in Clipwell Free with zero recurring fees</li>
+              <li><strong>Multi-Page Research Clip Queue</strong> &rarr; export 1 combined Markdown bundle</li>
+              <li><strong>Batch Export All Tables</strong> on the active page in 1 click</li>
+              <li>Up to <strong>5 concurrent devices</strong> per license key + 7-day offline grace</li>
+            </ul>
+          </div>
+          <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Unlock Pro Lifetime &mdash; $29</a>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Clipwell Free ($0)</th>
+              <th class="pro-col">Clipwell Pro ($29 Once)</th>
+              <th>Privacy &amp; Execution Boundary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Active-Tab Article &rarr; Clean Markdown + YAML</strong></td>
+              <td>Unlimited</td>
+              <td class="pro-val">Unlimited</td>
+              <td class="muted-cell">100% local DOM via <code>activeTab</code></td>
+            </tr>
+            <tr>
+              <td><strong>HTML <code>&lt;table&gt;</code> &amp; ARIA Grid Normalization</strong></td>
+              <td>Single selected table (TSV, CSV, MD)</td>
+              <td class="pro-val">Single + Batch Export All Tables</td>
+              <td class="muted-cell">Preserves <code>colspan</code> &amp; <code>rowspan</code> in memory</td>
+            </tr>
+            <tr>
+              <td><strong>ChatGPT &amp; Claude Thread Turn Formatting</strong></td>
+              <td>Included (<code>### User</code> / <code>### Assistant</code>)</td>
+              <td class="pro-val">Included + Multi-Thread Queue</td>
+              <td class="muted-cell">Zero remote transcript upload</td>
+            </tr>
+            <tr>
+              <td><strong>Multi-Page Research Clip Queue Dossier</strong></td>
+              <td class="muted-cell">Single active page</td>
+              <td class="pro-val">Unlimited multi-tab <code>.md</code> bundles</td>
+              <td class="muted-cell">Stored locally in <code>chrome.storage.local</code></td>
+            </tr>
+            <tr>
+              <td><strong>One-Click Batch Export All Page Tables</strong></td>
+              <td class="muted-cell">Table-by-table selector</td>
+              <td class="pro-val">All detected tables in 1 click</td>
+              <td class="muted-cell">Local Markdown &amp; table serializer</td>
+            </tr>
+            <tr>
+              <td><strong>Concurrent Browser / Device Activations</strong></td>
+              <td>Unlimited browsers</td>
+              <td class="pro-val">Up to 5 concurrent devices per key</td>
+              <td class="muted-cell">Self-serve Polar Customer Portal key</td>
+            </tr>
+            <tr>
+              <td><strong>Offline Resilience &amp; Grace Window</strong></td>
+              <td>100% offline</td>
+              <td class="pro-val">12h revalidation + 7-day offline grace</td>
+              <td class="muted-cell">HTTPS to <code>api.polar.sh</code> only when keyed</td>
+            </tr>
+            <tr>
+              <td><strong>Billing &amp; Ownership Model</strong></td>
+              <td>$0 Free forever</td>
+              <td class="pro-val">$29 one-time lifetime license</td>
+              <td class="muted-cell">Stripe-backed checkout via Polar.sh</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="activate" class="section">
+      <div class="section-head">
+        <span class="section-kicker">Instant Activation</span>
+        <h2>Unlock Pro in 3 Steps (&lt; 30 Seconds)</h2>
+        <p>No account password or cloud login inside the extension &mdash; activate directly with your Polar license key.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-num">1</span>
+          <h3>Install Free from Chrome Web Store</h3>
+          <p>Click <a href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a> and pin Clipwell to your browser toolbar for one-click access on any tab.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-num">2</span>
+          <h3>Get Your Polar License Key</h3>
+          <p>Complete the one-time $29 checkout on <a href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Polar.sh (FlowBench Lab)</a> to receive your key immediately onscreen and by email.</p>
+          <span class="key-pill">CLIP-XXXX-XXXX-XXXX</span>
+        </div>
+
+        <div class="step-card">
+          <span class="step-num">3</span>
+          <h3>Paste in Batch &amp; Pro &rarr; Activate</h3>
+          <p>Open the Clipwell popup, switch to the <strong>Batch &amp; Pro</strong> tab, paste your <code>CLIP-XXXX-XXXX-XXXX</code> key, and click <strong>Activate</strong> (valid on up to 5 devices).</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="section-head">
+        <span class="section-kicker">Technical FAQ</span>
+        <h2>Permissions, Table Parsing &amp; Licensing Details</h2>
+        <p>Transparent answers for security-conscious engineers, analysts, and researchers.</p>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>
+            <span>Why does Clipwell use <code>activeTab</code> instead of broad all-sites permissions?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body">
+            Extensions requesting <code>&lt;all_urls&gt;</code> can read banking, email, and internal admin tabs silently in the background. Clipwell uses Chrome's <code>activeTab</code> + <code>scripting</code> model so it cannot inspect any webpage until you explicitly click the Clipwell icon on that tab.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span>How does Clipwell handle complex HTML tables with <code>colspan</code>, <code>rowspan</code>, or ARIA roles?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body">
+            Clipwell constructs an in-memory 2D occupancy grid that expands merged <code>colspan</code> and <code>rowspan</code> cells, flattens internal <code>&lt;br&gt;</code> line breaks, and escapes literal <code>|</code> characters so tables paste cleanly into Notion, Obsidian, GitHub GFM, Excel, and Google Sheets.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span>How many computers can I activate with one <code>CLIP-XXXX-XXXX-XXXX</code> Pro key?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body">
+            Every $29 Clipwell Pro Lifetime key includes up to <strong>5 concurrent browser profile activations</strong> across macOS, Windows, and Linux.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span>Does Clipwell work offline or on flights?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body">
+            Yes. Clipwell Free triggers zero network requests at all times. Clipwell Pro caches validation locally in <code>chrome.storage.local</code>, revalidating once every 12 hours when online with a full <strong>7-day offline grace window</strong>.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <span>Is Clipwell Pro a recurring subscription?</span>
+            <span class="faq-plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body">
+            No. Clipwell Pro is a <strong>$29 one-time purchase</strong> processed securely via Polar.sh (Stripe) with lifetime v1.x updates included.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="support" class="support-banner">
+      <div>
+        <h2>Need License Help, Team Invoicing, or Table Parser Support?</h2>
+        <p>Published by <strong>FlowBench Lab</strong>. Email <a href="mailto:lhphong09t2@gmail.com">lhphong09t2@gmail.com</a> for direct engineering support or watch step-by-step table &amp; research workflows on <a href="https://www.youtube.com/@FlowBenchLab" target="_blank" rel="noopener">YouTube (@FlowBenchLab)</a>.</p>
+      </div>
+      <div class="hero-ctas" style="margin-bottom:0;">
+        <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
+        <a class="btn btn-secondary" href="mailto:lhphong09t2@gmail.com">Email Support</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="./">
+            <svg viewBox="0 0 128 128" width="26" height="26" aria-hidden="true">
+              <rect x="0" y="0" width="128" height="128" rx="28" fill="#090D16"/>
+              <rect x="18" y="24" width="92" height="86" rx="16" fill="#111827" stroke="#10B981" stroke-width="6"/>
+              <rect x="42" y="12" width="44" height="18" rx="9" fill="#10B981"/>
+              <rect x="30" y="44" width="68" height="13" rx="4" fill="#F8FAFC"/>
+              <rect x="30" y="65" width="40" height="11" rx="3.5" fill="#10B981"/>
+              <rect x="76" y="65" width="22" height="11" rx="3.5" fill="#64748B"/>
+              <rect x="30" y="84" width="40" height="11" rx="3.5" fill="#94A3B8"/>
+              <rect x="76" y="84" width="22" height="11" rx="3.5" fill="#34D399"/>
+            </svg>
+            <span>Clipwell</span>
+          </a>
+          <p>Local-first Chrome Manifest V3 Markdown, HTML/ARIA table, and AI thread clipper by FlowBench Lab.</p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Chrome Web Store</a></li>
+            <li><a href="./table-cleaner.html">Free Table Cleaner</a></li>
+            <li><a href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Clipwell Pro ($29)</a></li>
+            <li><a href="#activate">License Activation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Resources &amp; Legal</h3>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#faq">Technical FAQ</a></li>
+            <li><a href="./privacy.html">Privacy Policy</a></li>
+            <li><a href="#support">Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>FlowBench Lab</h3>
+          <ul>
+            <li><a href="https://www.youtube.com/@FlowBenchLab" target="_blank" rel="noopener">YouTube (@FlowBenchLab)</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61596629317479" target="_blank" rel="noopener">Facebook Page</a></li>
+            <li><a href="mailto:lhphong09t2@gmail.com">lhphong09t2@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 FlowBench Lab &middot; Clipwell v1.0.0</span>
+        <span>100% Local DOM Parsing &middot; Zero All-Sites Permissions</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mobileNav = document.getElementById('mobile-nav');
+      if (!mobileNav) return;
+      mobileNav.addEventListener('click', function (e) {
+        var link = e.target.closest('a');
+        if (link) {
+          mobileNav.removeAttribute('open');
+        }
+      });
+      document.addEventListener('click', function (e) {
+        if (mobileNav.hasAttribute('open') && !mobileNav.contains(e.target)) {
+          mobileNav.removeAttribute('open');
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileNav.hasAttribute('open')) {
+          mobileNav.removeAttribute('open');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
