@@ -190,6 +190,9 @@
       font-weight: 500;
     }
     .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
       color: var(--muted);
       text-decoration: none;
       white-space: nowrap;
@@ -205,8 +208,8 @@
       align-items: center;
       justify-content: center;
       gap: 7px;
-      padding: 9px 14px;
-      min-height: 38px;
+      padding: 10px 14px;
+      min-height: 44px;
       border-radius: 9px;
       background-color: var(--accent);
       color: var(--accent-ink);
@@ -249,6 +252,10 @@
       top: calc(100% + 6px);
       left: 16px;
       right: 16px;
+      max-height: calc(100vh - 76px);
+      max-height: calc(100dvh - 76px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
       background-color: #0f1624;
       border: 1px solid var(--border-strong);
       border-radius: 14px;
@@ -292,6 +299,7 @@
       .desktop-nav-only { display: none; }
       .mobile-nav-only { display: block; }
       .header-inner { padding: 10px 16px; }
+      select, textarea, input { font-size: 16px; }
     }
 
     /* Main Container */
@@ -868,6 +876,9 @@
       .footer-grid { grid-template-columns: minmax(0, 1fr); }
       .site-footer { padding: 36px 16px 28px; }
     }
+    @media (max-width: 760px) {
+      select, textarea, input { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -1005,7 +1016,7 @@
           <div>
             <span class="bento-badge">Clipwell Pro Workflow</span>
             <h3>Multi-Page Research Clip Queue &amp; Batch Table Export</h3>
-            <p>Queue articles, API docs, and AI threads incrementally across tabs into <code>chrome.storage.local</code> and export one unified Markdown dossier, or batch-export every table on a dense benchmark page in 1 click.</p>
+            <p>Queue up to 50 articles, API docs, and AI threads incrementally across tabs into <code>chrome.storage.local</code> and export one unified Markdown dossier, or batch-export every table on a dense benchmark page in 1 click.</p>
           </div>
         </article>
 
@@ -1061,7 +1072,7 @@
             <p class="plan-desc">Multi-tab research dossiers and full-page batch table extraction via Polar.sh.</p>
             <ul class="plan-list">
               <li>Everything in Clipwell Free with zero recurring fees</li>
-              <li><strong>Multi-Page Research Clip Queue</strong> &rarr; export 1 combined Markdown bundle</li>
+              <li><strong>Up to 50 pages per Research Clip Queue dossier</strong> &rarr; export 1 combined Markdown bundle</li>
               <li><strong>Batch Export All Tables</strong> on the active page in 1 click</li>
               <li>Up to <strong>5 concurrent devices</strong> per license key + 7-day offline grace</li>
             </ul>
@@ -1102,7 +1113,7 @@
             <tr>
               <td><strong>Multi-Page Research Clip Queue Dossier</strong></td>
               <td class="muted-cell">Single active page</td>
-              <td class="pro-val">Unlimited multi-tab <code>.md</code> bundles</td>
+              <td class="pro-val">Up to 50 pages per Research Clip Queue dossier</td>
               <td class="muted-cell">Stored locally in <code>chrome.storage.local</code></td>
             </tr>
             <tr>
@@ -1296,9 +1307,15 @@
     (function () {
       var mobileNav = document.getElementById('mobile-nav');
       if (!mobileNav) return;
+      var summary = mobileNav.querySelector('summary');
       mobileNav.addEventListener('click', function (e) {
         var link = e.target.closest('a');
         if (link) {
+          mobileNav.removeAttribute('open');
+        }
+      });
+      mobileNav.addEventListener('focusout', function (e) {
+        if (mobileNav.hasAttribute('open') && e.relatedTarget && !mobileNav.contains(e.relatedTarget)) {
           mobileNav.removeAttribute('open');
         }
       });
@@ -1309,7 +1326,9 @@
       });
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && mobileNav.hasAttribute('open')) {
+          e.preventDefault();
           mobileNav.removeAttribute('open');
+          if (summary) summary.focus();
         }
       });
     })();

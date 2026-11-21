@@ -45,7 +45,11 @@
       "@type": "Organization",
       "name": "FlowBench Lab",
       "url": "https://lhphong09t2.github.io/clipwell/",
-      "email": "lhphong09t2@gmail.com"
+      "email": "lhphong09t2@gmail.com",
+      "sameAs": [
+        "https://www.youtube.com/@FlowBenchLab",
+        "https://www.facebook.com/profile.php?id=61596629317479"
+      ]
     }
   }
   </script>
@@ -136,6 +140,9 @@
       font-weight: 500;
     }
     .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
       color: var(--muted);
       text-decoration: none;
       white-space: nowrap;
@@ -151,8 +158,8 @@
       align-items: center;
       justify-content: center;
       gap: 7px;
-      padding: 9px 14px;
-      min-height: 38px;
+      padding: 10px 14px;
+      min-height: 44px;
       border-radius: 9px;
       background-color: var(--accent);
       color: var(--accent-ink);
@@ -195,6 +202,10 @@
       top: calc(100% + 6px);
       left: 16px;
       right: 16px;
+      max-height: calc(100vh - 76px);
+      max-height: calc(100dvh - 76px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
       background-color: #0f1624;
       border: 1px solid var(--border-strong);
       border-radius: 14px;
@@ -266,6 +277,7 @@
       .desktop-nav-only { display: none; }
       .mobile-nav-only { display: block; }
       .header-inner { padding: 10px 16px; }
+      select, textarea, input { font-size: 16px; }
     }
 
     /* Content */
@@ -437,6 +449,9 @@
       .footer-grid { grid-template-columns: minmax(0, 1fr); }
       .site-footer { padding: 36px 16px 28px; }
     }
+    @media (max-width: 760px) {
+      select, textarea, input { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -519,7 +534,7 @@
       <section id="storage" class="policy-section">
         <h2>2. Local Browser Storage (<code>chrome.storage.local</code>)</h2>
         <ul>
-          <li><strong>Research Clip Queue (<code>clipwell_bundle_queue_v1</code>):</strong> Pages you explicitly choose to add while building a Pro Markdown bundle. You can clear this queue at any time inside the Batch &amp; Pro tab.</li>
+          <li><strong>Research Clip Queue (<code>clipwell_bundle_queue_v1</code>):</strong> Pages you explicitly choose to add (up to 50 pages per Research Clip Queue dossier) while building a Pro Markdown bundle. You can clear this queue at any time inside the Batch &amp; Pro tab.</li>
           <li><strong>Pro License State (<code>clipwell_pro_license_v1</code>):</strong> Optional Polar.sh license key, activation ID, and validation timestamp stored on your device to enable 12-hour revalidation and a 7-day offline grace window.</li>
         </ul>
       </section>
@@ -606,9 +621,15 @@
     (function () {
       var mobileNav = document.getElementById('mobile-nav');
       if (!mobileNav) return;
+      var summary = mobileNav.querySelector('summary');
       mobileNav.addEventListener('click', function (e) {
         var link = e.target.closest('a');
         if (link) {
+          mobileNav.removeAttribute('open');
+        }
+      });
+      mobileNav.addEventListener('focusout', function (e) {
+        if (mobileNav.hasAttribute('open') && e.relatedTarget && !mobileNav.contains(e.relatedTarget)) {
           mobileNav.removeAttribute('open');
         }
       });
@@ -619,7 +640,9 @@
       });
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && mobileNav.hasAttribute('open')) {
+          e.preventDefault();
           mobileNav.removeAttribute('open');
+          if (summary) summary.focus();
         }
       });
     })();

@@ -41,7 +41,12 @@
     "publisher": {
       "@type": "Organization",
       "name": "FlowBench Lab",
-      "url": "https://lhphong09t2.github.io/clipwell/"
+      "url": "https://lhphong09t2.github.io/clipwell/",
+      "email": "lhphong09t2@gmail.com",
+      "sameAs": [
+        "https://www.youtube.com/@FlowBenchLab",
+        "https://www.facebook.com/profile.php?id=61596629317479"
+      ]
     },
     "offers": {
       "@type": "Offer",
@@ -137,6 +142,9 @@
       font-weight: 500;
     }
     .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
       color: var(--muted);
       text-decoration: none;
       white-space: nowrap;
@@ -152,8 +160,8 @@
       align-items: center;
       justify-content: center;
       gap: 7px;
-      padding: 9px 14px;
-      min-height: 38px;
+      padding: 10px 14px;
+      min-height: 44px;
       border-radius: 9px;
       background-color: var(--accent);
       color: var(--accent-ink);
@@ -196,6 +204,10 @@
       top: calc(100% + 6px);
       left: 16px;
       right: 16px;
+      max-height: calc(100vh - 76px);
+      max-height: calc(100dvh - 76px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
       background-color: #0f1624;
       border: 1px solid var(--border-strong);
       border-radius: 14px;
@@ -239,6 +251,7 @@
       .desktop-nav-only { display: none; }
       .mobile-nav-only { display: block; }
       .header-inner { padding: 10px 16px; }
+      select, textarea, input { font-size: 16px; }
     }
 
     /* Main Container */
@@ -321,7 +334,7 @@
       cursor: pointer;
       font-family: inherit;
       padding: 10px 15px;
-      min-height: 40px;
+      min-height: 44px;
       border-radius: 9px;
       font-weight: 700;
       text-decoration: none;
@@ -354,8 +367,8 @@
       background-color: var(--bg);
       color: var(--muted);
       border-color: var(--border);
-      padding: 8px 13px;
-      min-height: 38px;
+      padding: 10px 13px;
+      min-height: 44px;
       font-size: 13px;
     }
     button.tab:hover { color: var(--text); border-color: var(--border-strong); }
@@ -368,7 +381,7 @@
     .controls {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px 18px;
+      gap: 10px 18px;
       align-items: center;
       margin-bottom: 18px;
       padding: 12px 14px;
@@ -383,16 +396,26 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 7px;
+      min-height: 44px;
       cursor: pointer;
       min-width: 0;
       max-width: 100%;
+    }
+    .controls input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+      cursor: pointer;
     }
     select {
       background-color: var(--surface-2);
       color: var(--text);
       border: 1px solid var(--border-strong);
       border-radius: 7px;
-      padding: 6px 10px;
+      padding: 8px 12px;
+      min-height: 44px;
       font-size: 13.5px;
       font-family: inherit;
       max-width: 100%;
@@ -620,6 +643,9 @@
       .footer-grid { grid-template-columns: minmax(0, 1fr); }
       .site-footer { padding: 36px 16px 28px; }
     }
+    @media (max-width: 760px) {
+      select, textarea, input { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -708,6 +734,7 @@
           <label><input type="checkbox" id="opt-align" checked /> Align Markdown pipes</label>
           <label><input type="checkbox" id="opt-trim" checked /> Normalize line breaks &amp; whitespace</label>
           <label><input type="checkbox" id="opt-repeat-merged" /> Repeat merged cell text</label>
+          <label><input type="checkbox" id="opt-escape-formulas" checked /> Guard formulas (<code>= + - @</code>)</label>
         </div>
 
         <div class="panes">
@@ -732,7 +759,7 @@
         </div>
 
         <div class="meta-bar">
-          <output id="stats-output" for="raw-input input-mode opt-header opt-align opt-trim opt-repeat-merged">0 rows &middot; 0 columns &middot; 0 chars</output>
+          <output id="stats-output" for="raw-input input-mode opt-header opt-align opt-trim opt-repeat-merged opt-escape-formulas">0 rows &middot; 0 columns &middot; 0 chars</output>
           <span class="status-msg" id="status-msg"></span>
         </div>
       </form>
@@ -802,7 +829,7 @@
 
     <section class="cta-box">
       <h2>Skip Inspecting DOM Markup &mdash; Extract Live Page Tables in 1 Click</h2>
-      <p>The free <strong>Clipwell</strong> Chrome extension extracts intact HTML <code>&lt;table&gt;</code> elements, ARIA grids, and AI threads directly from your active tab with zero all-sites permissions. Upgrade to <strong>Clipwell Pro ($29 one-time)</strong> to batch-export every table on a page or build multi-page Research Clip Queues.</p>
+      <p>The free <strong>Clipwell</strong> Chrome extension extracts intact HTML <code>&lt;table&gt;</code> elements, ARIA grids, and AI threads directly from your active tab with zero all-sites permissions. Upgrade to <strong>Clipwell Pro ($29 one-time)</strong> to batch-export every table on a page or build up to 50-page Research Clip Queues.</p>
       <div class="cta-row">
         <a class="btn primary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
         <a class="btn secondary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Unlock Pro Lifetime &mdash; $29</a>
@@ -872,9 +899,15 @@
     (function () {
       var mobileNav = document.getElementById('mobile-nav');
       if (mobileNav) {
+        var mobileSummary = mobileNav.querySelector('summary');
         mobileNav.addEventListener('click', function (e) {
           var link = e.target.closest('a');
           if (link) {
+            mobileNav.removeAttribute('open');
+          }
+        });
+        mobileNav.addEventListener('focusout', function (e) {
+          if (mobileNav.hasAttribute('open') && e.relatedTarget && !mobileNav.contains(e.relatedTarget)) {
             mobileNav.removeAttribute('open');
           }
         });
@@ -885,7 +918,9 @@
         });
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape' && mobileNav.hasAttribute('open')) {
+            e.preventDefault();
             mobileNav.removeAttribute('open');
+            if (mobileSummary) mobileSummary.focus();
           }
         });
       }
@@ -924,6 +959,7 @@
       const optAlignEl = document.getElementById('opt-align');
       const optTrimEl = document.getElementById('opt-trim');
       const optRepeatMergedEl = document.getElementById('opt-repeat-merged');
+      const optEscapeFormulasEl = document.getElementById('opt-escape-formulas');
       const detectedBadgeEl = document.getElementById('detected-badge');
       const outputLabelEl = document.getElementById('output-label');
       const statsOutputEl = document.getElementById('stats-output');
@@ -969,7 +1005,10 @@
       function detectInputFormat(raw) {
         const s = stripBom(raw).trim();
         if (!s) return 'csv';
-        if (/<table[\s>]|<tr[\s>]|<t[hd][\s>]|role\s*=\s*["'](?:table|grid|row)["']/i.test(s)) {
+        const startsLikeMarkup = /^(?:<!--[\s\S]*?-->\s*)*<(?:!doctype\b|[a-z][a-z0-9-]*\b)/i.test(s);
+        const hasTableTokens = /<table[\s>]|<tr[\s>]|<t[hd][\s>]|role\s*=\s*["'](?:table|grid|row)["']/i.test(s);
+        const hasClosingMarkup = /<\/(?:table|tr|td|th|thead|tbody|div|section|main|article)\s*>/i.test(s);
+        if (startsLikeMarkup && hasTableTokens && hasClosingMarkup) {
           return 'html';
         }
         const sampleLines = s.split(/\r\n|\n|\r/).filter(Boolean).slice(0, 8);
@@ -1039,11 +1078,58 @@
 
       function extractCellText(cellEl) {
         const clone = cellEl.cloneNode(true);
+        const noise = clone.querySelectorAll('script, style, template, noscript, [aria-hidden="true"]');
+        for (let i = 0; i < noise.length; i++) {
+          noise[i].remove();
+        }
         const breaks = clone.querySelectorAll('br');
         for (let i = 0; i < breaks.length; i++) {
           breaks[i].replaceWith(document.createTextNode(' '));
         }
+        const nested = clone.querySelectorAll('table, th, td, tr');
+        for (let i = 0; i < nested.length; i++) {
+          nested[i].before(' ');
+          nested[i].append(' ');
+        }
         return (clone.textContent || '').trim();
+      }
+
+      function parseSpanCount(cellEl, htmlAttr, ariaAttr) {
+        const raw = cellEl.getAttribute(htmlAttr) || cellEl.getAttribute(ariaAttr) || '1';
+        return Math.max(1, Math.min(50, parseInt(raw, 10) || 1));
+      }
+
+      function buildOccupancyMatrix(rowCellLists, repeatMerged) {
+        const rowCount = rowCellLists.length;
+        const matrix = [];
+        const occupied = [];
+
+        for (let r = 0; r < rowCount; r++) {
+          if (!matrix[r]) matrix[r] = [];
+          if (!occupied[r]) occupied[r] = [];
+          const cells = rowCellLists[r];
+          let c = 0;
+          for (const cell of cells) {
+            while (occupied[r][c]) {
+              if (matrix[r][c] === undefined) matrix[r][c] = '';
+              c++;
+            }
+            const rowSpan = parseSpanCount(cell, 'rowspan', 'aria-rowspan');
+            const colSpan = parseSpanCount(cell, 'colspan', 'aria-colspan');
+            const val = extractCellText(cell);
+
+            for (let dr = 0; dr < rowSpan && r + dr < rowCount; dr++) {
+              if (!matrix[r + dr]) matrix[r + dr] = [];
+              if (!occupied[r + dr]) occupied[r + dr] = [];
+              for (let dc = 0; dc < colSpan; dc++) {
+                occupied[r + dr][c + dc] = true;
+                matrix[r + dr][c + dc] = (dr === 0 && dc === 0) || repeatMerged ? val : '';
+              }
+            }
+            c += colSpan;
+          }
+        }
+        return matrix;
       }
 
       function parseHtmlOrAriaTable(raw, repeatMerged) {
@@ -1059,47 +1145,36 @@
         const tableEl = doc.querySelector('table');
 
         if (tableEl) {
-          const trList = Array.from(tableEl.querySelectorAll('tr'));
-          const matrix = [];
-          const occupied = [];
-
+          const trList = Array.from(tableEl.querySelectorAll('tr')).filter(function (tr) {
+            return tr.closest('table') === tableEl;
+          });
+          const rowCellLists = [];
           for (let r = 0; r < trList.length; r++) {
             const tr = trList[r];
-            if (!matrix[r]) matrix[r] = [];
-            if (!occupied[r]) occupied[r] = [];
-
-            const cells = Array.from(tr.children).filter(function (el) {
-              return el.tagName === 'TH' || el.tagName === 'TD';
+            const cells = Array.from(tr.querySelectorAll('th, td')).filter(function (el) {
+              return el.closest('tr') === tr;
             });
-            let c = 0;
-            for (const cell of cells) {
-              while (occupied[r][c]) c++;
-              const rowSpan = Math.max(1, Math.min(100, parseInt(cell.getAttribute('rowspan') || '1', 10) || 1));
-              const colSpan = Math.max(1, Math.min(100, parseInt(cell.getAttribute('colspan') || '1', 10) || 1));
-              const val = extractCellText(cell);
-
-              for (let dr = 0; dr < rowSpan; dr++) {
-                if (!matrix[r + dr]) matrix[r + dr] = [];
-                if (!occupied[r + dr]) occupied[r + dr] = [];
-                for (let dc = 0; dc < colSpan; dc++) {
-                  occupied[r + dr][c + dc] = true;
-                  matrix[r + dr][c + dc] = (dr === 0 && dc === 0) || repeatMerged ? val : '';
-                }
-              }
-              c += colSpan;
-            }
+            if (cells.length > 0) rowCellLists.push(cells);
           }
-          return matrix;
+          return buildOccupancyMatrix(rowCellLists, repeatMerged);
         }
 
-        const ariaRows = Array.from(doc.querySelectorAll('[role="row"]'));
-        return ariaRows.map(function (rowEl) {
-          return Array.from(
-            rowEl.querySelectorAll('[role="columnheader"], [role="rowheader"], [role="gridcell"], [role="cell"]')
-          ).map(extractCellText);
-        }).filter(function (r) {
-          return r.length > 0;
+        const ariaRoot = doc.querySelector('[role="table"], [role="grid"]') || doc.body;
+        const ariaRows = Array.from(ariaRoot.querySelectorAll('[role="row"]')).filter(function (rowEl) {
+          const ownerGrid = rowEl.parentElement ? rowEl.parentElement.closest('[role="table"], [role="grid"]') : null;
+          return ariaRoot === doc.body ? !ownerGrid : ownerGrid === ariaRoot;
         });
+        const ariaCellLists = [];
+        for (let r = 0; r < ariaRows.length; r++) {
+          const rowEl = ariaRows[r];
+          const cells = Array.from(
+            rowEl.querySelectorAll('[role="columnheader"], [role="rowheader"], [role="gridcell"], [role="cell"]')
+          ).filter(function (el) {
+            return el.closest('[role="row"]') === rowEl;
+          });
+          if (cells.length > 0) ariaCellLists.push(cells);
+        }
+        return buildOccupancyMatrix(ariaCellLists, repeatMerged);
       }
 
       function normalizeGrid(rows, normalizeWhitespace) {
@@ -1136,7 +1211,7 @@
 
         const escaped = working.map(function (row) {
           return row.map(function (cell) {
-            return cell.replace(/\r\n|\r|\n/g, ' ').replace(/\|/g, '\\|');
+            return cell.replace(/\r\n|\r|\n/g, ' ').replace(/\\/g, '\\\\').replace(/\|/g, '\\|');
           });
         });
 
@@ -1167,29 +1242,52 @@
         return lines.join('\n');
       }
 
-      function formatCsvField(val) {
-        if (/[",\r\n]/.test(val)) {
-          return '"' + val.replace(/"/g, '""') + '"';
+      function isDangerousSpreadsheetFormula(val) {
+        const trimmed = String(val == null ? '' : val).trim();
+        if (!trimmed) return false;
+        const ch = trimmed.charAt(0);
+        if (ch === '=' || ch === '@') return true;
+        if (ch === '+' || ch === '-') {
+          return !/^[+-](?:\d+(?:,\d{3})*(?:\.\d+)?|\.\d+)%?$/.test(trimmed);
         }
-        return val;
+        return false;
       }
 
-      function formatTsvField(val) {
-        if (/["\t\r\n]/.test(val)) {
-          return '"' + val.replace(/"/g, '""') + '"';
-        }
-        return val;
+      function guardFormulaField(val, escapeFormulas) {
+        const s = String(val == null ? '' : val);
+        if (!escapeFormulas || !isDangerousSpreadsheetFormula(s)) return s;
+        return "'" + s;
       }
 
-      function buildCsv(grid) {
+      function formatCsvField(val, escapeFormulas) {
+        const s = guardFormulaField(val, escapeFormulas);
+        if (/[",\r\n]/.test(s)) {
+          return '"' + s.replace(/"/g, '""') + '"';
+        }
+        return s;
+      }
+
+      function formatTsvField(val, escapeFormulas) {
+        const s = guardFormulaField(val, escapeFormulas);
+        if (/["\t\r\n]/.test(s)) {
+          return '"' + s.replace(/"/g, '""') + '"';
+        }
+        return s;
+      }
+
+      function buildCsv(grid, escapeFormulas) {
         return grid.map(function (row) {
-          return row.map(formatCsvField).join(',');
+          return row.map(function (cell) {
+            return formatCsvField(cell, escapeFormulas);
+          }).join(',');
         }).join('\n');
       }
 
-      function buildTsv(grid) {
+      function buildTsv(grid, escapeFormulas) {
         return grid.map(function (row) {
-          return row.map(formatTsvField).join('\t');
+          return row.map(function (cell) {
+            return formatTsvField(cell, escapeFormulas);
+          }).join('\t');
         }).join('\n');
       }
 
@@ -1211,10 +1309,11 @@
         }
 
         const grid = normalizeGrid(parsed, optTrimEl.checked);
+        const escapeFormulas = !optEscapeFormulasEl || optEscapeFormulasEl.checked;
         currentOutputs = {
           markdown: buildMarkdown(grid, optHeaderEl.checked, optAlignEl.checked),
-          tsv: buildTsv(grid),
-          csv: buildCsv(grid)
+          tsv: buildTsv(grid, escapeFormulas),
+          csv: buildCsv(grid, escapeFormulas)
         };
 
         const outText = currentOutputs[activeFormat] || '';
@@ -1318,7 +1417,8 @@
         setStatus('Downloaded cleaned-table.' + meta.ext + '.');
       });
 
-      [rawInputEl, inputModeEl, optHeaderEl, optAlignEl, optTrimEl, optRepeatMergedEl].forEach(function (el) {
+      [rawInputEl, inputModeEl, optHeaderEl, optAlignEl, optTrimEl, optRepeatMergedEl, optEscapeFormulasEl].forEach(function (el) {
+        if (!el) return;
         el.addEventListener('input', updateView);
         el.addEventListener('change', updateView);
       });
