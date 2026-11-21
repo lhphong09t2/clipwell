@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — Clipwell Chrome Extension</title>
+  <style>
+    :root { --bg:#0b1120; --surface:#111827; --border:#334155; --text:#f8fafc; --muted:#94a3b8; --accent:#34d399; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+    .wrap { max-width:780px; margin:0 auto; padding:36px 20px 64px; }
+    a { color:var(--accent); }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:26px 28px; }
+    h1 { margin:0 0 8px; font-size:30px; }
+    h2 { margin:24px 0 8px; font-size:18px; color:var(--accent); }
+    p, li { color:#cbd5e1; font-size:15px; }
+    code { background:#1e293b; padding:2px 6px; border-radius:4px; font-size:13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="./">&larr; Back to Clipwell</a></p>
+    <div class="card">
+      <h1>Privacy Policy — Clipwell Chrome Extension</h1>
+      <p><strong>Last Updated:</strong> November 21, 2026 &middot; <strong>Publisher:</strong> FlowBench Lab</p>
+
+      <h2>1. Zero Page Telemetry or Remote Scraping</h2>
+      <p>Clipwell processes webpage DOM content, HTML/ARIA tables, and AI chat threads <strong>100% locally inside your browser</strong>. Using only Chrome's <code>activeTab</code> and <code>scripting</code> permissions, Clipwell inspects the currently active tab exclusively when you click the Clipwell extension icon and never transmits clipped text, URLs, or tables to any developer server or third-party analytics endpoint.</p>
+
+      <h2>2. Local Browser Storage (<code>chrome.storage.local</code>)</h2>
+      <ul>
+        <li><strong>Research Clip Queue (<code>clipwell_bundle_queue_v1</code>):</strong> Pages you explicitly choose to add while building a Pro Markdown bundle. You can clear this queue at any time inside the Batch &amp; Pro tab.</li>
+        <li><strong>Pro License State (<code>clipwell_pro_license_v1</code>):</strong> Optional Polar.sh license key, activation ID, and validation timestamp stored on your device to enable 12-hour revalidation and a 7-day offline grace window.</li>
+      </ul>
+
+      <h2>3. Optional License Validation (<code>https://api.polar.sh</code>)</h2>
+      <p>If you enter a Clipwell Pro license key ($29 one-time purchase), Clipwell sends only the license key, Clipwell's Polar organization identifier, and extension activation label directly over HTTPS to Polar.sh (<code>https://api.polar.sh/v1/customer-portal/license-keys</code>) to activate or validate your key. Free users who do not enter a key trigger zero external network requests.</p>
+
+      <h2>4. Data Sale &amp; Tracking Certification</h2>
+      <ul>
+        <li>We do <strong>not</strong> sell or transfer user data to third parties.</li>
+        <li>We do <strong>not</strong> use user data for purposes unrelated to Clipwell's single clipping purpose or for creditworthiness/lending.</li>
+        <li>We do <strong>not</strong> embed remote executable code, tracking pixels, cookies, or ad SDKs.</li>
+      </ul>
+
+      <h2>5. Contact</h2>
+      <p>Questions or privacy requests: <a href="mailto:lhphong09t2@gmail.com">lhphong09t2@gmail.com</a>.</p>
+    </div>
+  </div>
+</body>
+</html>

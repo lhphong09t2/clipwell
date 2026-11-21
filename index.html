@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clipwell — Clean Markdown, Table &amp; AI Thread Clipper</title>
+  <meta name="description" content="Clip articles, intact HTML/ARIA tables, and AI conversation threads to clean Markdown, CSV, or Google Sheets TSV locally with activeTab privacy." />
+  <style>
+    :root { --bg:#0b1120; --surface:#111827; --card:#1e293b; --border:#334155; --text:#f8fafc; --muted:#94a3b8; --accent:#10b981; --accent2:#34d399; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:920px; margin:0 auto; padding:36px 20px 64px; }
+    nav { display:flex; justify-content:space-between; align-items:center; margin-bottom:44px; padding-bottom:16px; border-bottom:1px solid var(--border); }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; font-size:18px; color:var(--text); text-decoration:none; }
+    .links { display:flex; gap:18px; font-size:14px; }
+    .links a { color:var(--muted); text-decoration:none; }
+    .links a:hover { color:var(--accent2); }
+    .pill { display:inline-block; background:rgba(16,185,129,.12); color:var(--accent2); border:1px solid rgba(16,185,129,.35); padding:4px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.04em; }
+    h1 { font-size:42px; line-height:1.12; margin:16px 0 14px; letter-spacing:-.02em; }
+    .lead { font-size:18px; color:var(--muted); max-width:720px; margin:0 0 28px; }
+    .cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:44px; }
+    .btn { display:inline-block; padding:12px 20px; border-radius:8px; font-weight:700; text-decoration:none; font-size:15px; }
+    .btn.primary { background:var(--accent); color:#052e16; }
+    .btn.secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-bottom:40px; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; }
+    .card h2 { margin:0 0 8px; font-size:17px; color:var(--accent2); }
+    .card p { margin:0; font-size:14px; color:var(--muted); }
+    .pricing { background:var(--card); border:1px solid var(--accent); border-radius:14px; padding:24px; margin-bottom:40px; }
+    .pricing h2 { margin:0 0 8px; font-size:22px; }
+    ul { padding-left:20px; margin:10px 0 0; color:#cbd5e1; font-size:14.5px; }
+    footer { border-top:1px solid var(--border); padding-top:22px; color:var(--muted); font-size:13px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; }
+    footer a { color:var(--accent2); text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="./">
+        <svg viewBox="0 0 128 128" width="28" height="28" aria-hidden="true">
+          <rect x="0" y="0" width="128" height="128" rx="28" fill="#0B1120"/>
+          <rect x="16" y="22" width="96" height="88" rx="16" fill="#1E293B" stroke="#10B981" stroke-width="6"/>
+          <rect x="40" y="10" width="48" height="18" rx="8" fill="#10B981"/>
+          <rect x="28" y="42" width="72" height="14" rx="4" fill="#F8FAFC"/>
+          <rect x="28" y="64" width="42" height="12" rx="4" fill="#10B981"/>
+          <rect x="76" y="64" width="24" height="12" rx="4" fill="#94A3B8"/>
+          <rect x="28" y="84" width="42" height="12" rx="4" fill="#94A3B8"/>
+          <rect x="76" y="84" width="24" height="12" rx="4" fill="#34D399"/>
+        </svg>
+        Clipwell
+      </a>
+      <div class="links">
+        <a href="#pricing">Pro License</a>
+        <a href="#support">Support</a>
+        <a href="./privacy.html">Privacy Policy</a>
+      </div>
+    </nav>
+
+    <span class="pill">CHROME MANIFEST V3 · ACTIVETAB ONLY</span>
+    <h1>Clean Markdown, Intact Tables &amp; AI Threads Without All-Sites Tracking</h1>
+    <p class="lead">Built by FlowBench Lab. Clip documentation, HTML/ARIA tables (colspan &amp; rowspan intact), and ChatGPT/Claude turns into clean Markdown, CSV, or Sheet-ready TSV directly on the active tab you click.</p>
+
+    <div class="cta-row">
+      <a class="btn primary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" rel="noopener">Get Clipwell Pro ($29 one-time)</a>
+      <a class="btn secondary" href="./privacy.html">Read Privacy Policy</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Zero All-Sites Access</h2>
+        <p>Uses Chrome activeTab + scripting only when you open the popup. Never runs background scrapers, telemetry, or remote page uploads.</p>
+      </div>
+      <div class="card">
+        <h2>Intact Multi-Column Tables</h2>
+        <p>Normalizes HTML &lt;table&gt; (including colspan &amp; rowspan) and ARIA grid widgets into aligned Markdown tables, CSV downloads, and one-click Google Sheets TSV.</p>
+      </div>
+      <div class="card">
+        <h2>AI Thread Separation</h2>
+        <p>Detects ChatGPT and Claude turns automatically and formats clean ### User and ### Assistant headings ready for Notion or Obsidian.</p>
+      </div>
+    </div>
+
+    <section id="pricing" class="pricing">
+      <h2>Free Core + Clipwell Pro ($29 One-Time Lifetime License)</h2>
+      <ul>
+        <li><strong>Free forever on active tab:</strong> Unlimited Markdown preview with optional YAML frontmatter, AI thread formatting, and single-table TSV/CSV/Markdown copy &amp; download.</li>
+        <li><strong>Clipwell Pro ($29 once via Polar.sh):</strong> Multi-page Research Clip Queue Bundle (collect pages incrementally across tabs and export one combined Markdown dossier) plus Batch Export All Tables on the active page.</li>
+        <li><strong>Offline friendly:</strong> Up to 5 device activations per key with 12-hour revalidation and a 7-day offline grace window.</li>
+      </ul>
+    </section>
+
+    <section id="support" class="card">
+      <h2>Support &amp; Publisher</h2>
+      <p>Published by <strong>FlowBench Lab</strong>. For license help, bug reports, or privacy requests, email <a href="mailto:lhphong09t2@gmail.com" style="color:#34d399;">lhphong09t2@gmail.com</a> or follow workflows on <a href="https://www.youtube.com/@FlowBenchLab" style="color:#34d399;" rel="noopener">YouTube (@FlowBenchLab)</a>.</p>
+    </section>
+
+    <footer>
+      <span>&copy; 2026 FlowBench Lab · Clipwell</span>
+      <span><a href="./privacy.html">Privacy Policy</a> · <a href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" rel="noopener">Polar Checkout</a></span>
+    </footer>
+  </div>
+</body>
+</html>
