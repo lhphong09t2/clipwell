@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free CSV, TSV &amp; HTML Table to Markdown Converter — Clipwell</title>
+  <meta name="description" content="Convert CSV, TSV, and HTML tables (including colspan and rowspan) into clean pipe-aligned Markdown, Google Sheets TSV, or RFC 4180 CSV locally in your browser." />
+  <style>
+    :root { --bg:#0b1120; --surface:#111827; --card:#1e293b; --border:#334155; --text:#f8fafc; --muted:#94a3b8; --accent:#10b981; --accent2:#34d399; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .wrap { max-width:960px; margin:0 auto; padding:36px 20px 64px; }
+    nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:36px; padding-bottom:16px; border-bottom:1px solid var(--border); }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; font-size:18px; color:var(--text); text-decoration:none; }
+    .links { display:flex; flex-wrap:wrap; gap:18px; font-size:14px; }
+    .links a { color:var(--muted); text-decoration:none; }
+    .links a:hover, .links a.active { color:var(--accent2); }
+    .pill { display:inline-block; background:rgba(16,185,129,.12); color:var(--accent2); border:1px solid rgba(16,185,129,.35); padding:4px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.04em; }
+    h1 { font-size:38px; line-height:1.14; margin:16px 0 12px; letter-spacing:-.02em; }
+    .lead { font-size:17px; color:var(--muted); max-width:760px; margin:0 0 28px; }
+    .tool-shell { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px; margin-bottom:36px; }
+    .toolbar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px; }
+    .btn-group { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    button, .btn { display:inline-block; cursor:pointer; font-family:inherit; padding:10px 16px; border-radius:8px; font-weight:700; text-decoration:none; font-size:14px; border:1px solid transparent; transition:background .15s, border-color .15s; }
+    button.primary, .btn.primary { background:var(--accent); color:#052e16; }
+    button.primary:hover, .btn.primary:hover { background:var(--accent2); }
+    button.secondary, .btn.secondary { background:var(--card); color:var(--text); border-color:var(--border); }
+    button.secondary:hover, .btn.secondary:hover { border-color:var(--accent2); }
+    button.tab { background:var(--bg); color:var(--muted); border-color:var(--border); padding:8px 14px; font-size:13px; }
+    button.tab.active { background:rgba(16,185,129,.15); color:var(--accent2); border-color:var(--accent); }
+    .controls { display:flex; flex-wrap:wrap; gap:16px; align-items:center; margin-bottom:16px; padding:12px 14px; background:var(--bg); border:1px solid var(--border); border-radius:10px; font-size:13.5px; color:#cbd5e1; }
+    .controls label { display:inline-flex; align-items:center; gap:7px; cursor:pointer; }
+    select { background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:6px; padding:6px 10px; font-size:13.5px; font-family:inherit; }
+    .panes { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; }
+    .pane { display:flex; flex-direction:column; gap:8px; }
+    .pane-head { display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:13px; font-weight:700; color:var(--accent2); }
+    textarea { width:100%; min-height:260px; resize:vertical; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:14px; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; font-size:13px; line-height:1.5; }
+    textarea:focus, select:focus { outline:2px solid var(--accent); outline-offset:1px; }
+    .meta-bar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-top:12px; font-size:13px; color:var(--muted); }
+    .status-msg { color:var(--accent2); font-weight:600; min-height:20px; }
+    .section-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:24px; margin-bottom:32px; }
+    .section-card h2 { margin:0 0 10px; font-size:21px; color:var(--text); }
+    .section-card p.sub { margin:0 0 18px; font-size:14.5px; color:var(--muted); }
+    .table-scroll { overflow-x:auto; border:1px solid var(--border); border-radius:10px; }
+    table { width:100%; border-collapse:collapse; font-size:14px; background:var(--bg); }
+    th, td { text-align:left; padding:12px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+    th { background:var(--card); color:var(--accent2); font-weight:700; font-size:13px; letter-spacing:.02em; }
+    tr:last-child td { border-bottom:none; }
+    td code { background:var(--card); padding:2px 6px; border-radius:4px; font-size:12.5px; color:#e2e8f0; }
+    .cta-box { background:var(--card); border:1px solid var(--accent); border-radius:14px; padding:24px; margin-bottom:36px; }
+    .cta-box h2 { margin:0 0 8px; font-size:22px; }
+    .cta-box p { margin:0 0 16px; color:#cbd5e1; font-size:15px; }
+    .cta-row { display:flex; flex-wrap:wrap; gap:12px; }
+    footer { border-top:1px solid var(--border); padding-top:22px; color:var(--muted); font-size:13px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; }
+    footer a { color:var(--accent2); text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="./">
+        <svg viewBox="0 0 128 128" width="28" height="28" aria-hidden="true">
+          <rect x="0" y="0" width="128" height="128" rx="28" fill="#0B1120"/>
+          <rect x="16" y="22" width="96" height="88" rx="16" fill="#1E293B" stroke="#10B981" stroke-width="6"/>
+          <rect x="40" y="10" width="48" height="18" rx="8" fill="#10B981"/>
+          <rect x="28" y="42" width="72" height="14" rx="4" fill="#F8FAFC"/>
+          <rect x="28" y="64" width="42" height="12" rx="4" fill="#10B981"/>
+          <rect x="76" y="64" width="24" height="12" rx="4" fill="#94A3B8"/>
+          <rect x="28" y="84" width="42" height="12" rx="4" fill="#94A3B8"/>
+          <rect x="76" y="84" width="24" height="12" rx="4" fill="#34D399"/>
+        </svg>
+        Clipwell
+      </a>
+      <div class="links">
+        <a href="./">Overview</a>
+        <a class="active" href="./table-cleaner.html">Table Cleaner</a>
+        <a href="./#pricing">Pro License</a>
+        <a href="./privacy.html">Privacy Policy</a>
+      </div>
+    </nav>
+
+    <span class="pill">100% CLIENT-SIDE · ZERO UPLOAD</span>
+    <h1>Free CSV, TSV &amp; HTML Table &rarr; Clean Markdown Converter</h1>
+    <p class="lead">Paste raw CSV, tab-delimited TSV, or HTML <code>&lt;table&gt;</code> markup (including <code>colspan</code>, <code>rowspan</code>, and ARIA grids) to normalize it locally into clean Pipe Markdown, Google Sheets TSV, or RFC 4180 CSV.</p>
+
+    <section class="tool-shell" aria-label="Interactive Table Converter">
+      <form id="table-cleaner-form" onsubmit="return false;">
+        <div class="toolbar">
+          <div class="btn-group">
+            <button type="button" class="secondary" id="sample-html-btn">Sample HTML Table</button>
+            <button type="button" class="secondary" id="sample-csv-btn">Sample CSV</button>
+            <button type="button" class="secondary" id="sample-tsv-btn">Sample TSV</button>
+            <button type="button" class="secondary" id="clear-btn">Clear</button>
+          </div>
+          <div class="btn-group" role="tablist" aria-label="Output format">
+            <button type="button" class="tab active" data-format="markdown" role="tab" aria-selected="true">Pipe Markdown</button>
+            <button type="button" class="tab" data-format="tsv" role="tab" aria-selected="false">Google Sheets TSV</button>
+            <button type="button" class="tab" data-format="csv" role="tab" aria-selected="false">Normalized CSV</button>
+          </div>
+        </div>
+
+        <div class="controls">
+          <label>
+            Input Mode:
+            <select id="input-mode" aria-label="Input format">
+              <option value="auto">Auto-detect</option>
+              <option value="html">HTML &lt;table&gt; / ARIA Grid</option>
+              <option value="csv">CSV (Comma)</option>
+              <option value="tsv">TSV (Tab)</option>
+            </select>
+          </label>
+          <label><input type="checkbox" id="opt-header" checked /> First row is header</label>
+          <label><input type="checkbox" id="opt-align" checked /> Align Markdown pipes</label>
+          <label><input type="checkbox" id="opt-trim" checked /> Normalize line breaks &amp; whitespace</label>
+          <label><input type="checkbox" id="opt-repeat-merged" /> Repeat merged cell text</label>
+        </div>
+
+        <div class="panes">
+          <div class="pane">
+            <div class="pane-head">
+              <label for="raw-input">Source Input (CSV, TSV, or HTML &lt;table&gt;)</label>
+              <span id="detected-badge">Detected: HTML</span>
+            </div>
+            <textarea id="raw-input" spellcheck="false" placeholder="Paste CSV, TSV, or <table>...</table> HTML here..."></textarea>
+          </div>
+
+          <div class="pane">
+            <div class="pane-head">
+              <label for="clean-output" id="output-label">Clean Pipe Markdown Output</label>
+              <div class="btn-group">
+                <button type="button" class="primary" id="copy-btn">Copy Output</button>
+                <button type="button" class="secondary" id="download-btn">Download</button>
+              </div>
+            </div>
+            <textarea id="clean-output" readonly spellcheck="false" aria-live="polite"></textarea>
+          </div>
+        </div>
+
+        <div class="meta-bar">
+          <output id="stats-output" for="raw-input input-mode opt-header opt-align opt-trim opt-repeat-merged">0 rows &middot; 0 columns &middot; 0 chars</output>
+          <span class="status-msg" id="status-msg"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="section-card">
+      <h2>Delimiter &amp; Platform Escaping Compatibility Matrix</h2>
+      <p class="sub">Reference behavior across Markdown editors, spreadsheets, and knowledge bases when converting messy copied tables.</p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Platform / Format</th>
+              <th>Delimiter &amp; Structure</th>
+              <th>Escaping &amp; Line-Break Rule</th>
+              <th>Merged Cell Handling</th>
+              <th>Best Output Mode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Markdown Pipe</strong></td>
+              <td>Pipe (<code>|</code>) + GFM header separator row (<code>| --- |</code>)</td>
+              <td>Escape literal pipes as <code>\|</code> and flatten internal line breaks to spaces</td>
+              <td>Expands <code>colspan</code> / <code>rowspan</code> into padded grid columns</td>
+              <td>Pipe Markdown (<code>.md</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>Google Sheets TSV</strong></td>
+              <td>Horizontal tab (<code>\t</code>) with LF/CRLF row endings</td>
+              <td>Strip embedded tabs and newlines or RFC-quote fields so rows never split across cells</td>
+              <td>Preserves column alignment with empty or repeated spanned slots</td>
+              <td>Google Sheets TSV (<code>.tsv</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>RFC 4180 CSV</strong></td>
+              <td>Comma (<code>,</code>) with optional double-quote wrapping</td>
+              <td>Quote any cell containing commas, line breaks, or quotes; double internal <code>"</code> as <code>""</code></td>
+              <td>Flattens merged headers into rectangular rows for BI/SQL import</td>
+              <td>Normalized CSV (<code>.csv</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>Notion Paste</strong></td>
+              <td>Markdown Pipe table or clipboard TSV grid</td>
+              <td>Requires uniform column count per row; stray unescaped pipes break table rendering</td>
+              <td>Unmerged uniform grid prevents column shift on paste</td>
+              <td>Pipe Markdown (<code>.md</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>Obsidian Table</strong></td>
+              <td>GFM Pipe table with single-line cell text</td>
+              <td>Requires valid header + divider row and escaped <code>\|</code> inside pipe-delimited cells</td>
+              <td>Header-safe rectangular expansion keeps live preview intact</td>
+              <td>Pipe Markdown (<code>.md</code>)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="cta-box">
+      <h2>Skip Copy-Pasting HTML Markup — Extract Any Page Table in 1 Click</h2>
+      <p>The <strong>Clipwell</strong> Chrome extension extracts intact HTML <code>&lt;table&gt;</code> elements and ARIA grids directly from your active tab with zero all-sites permissions or remote telemetry. Upgrade to <strong>Clipwell Pro ($29 one-time)</strong> to batch-export every table on a page or build multi-page Research Clip Queues.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" rel="noopener">Get Clipwell Pro ($29 one-time)</a>
+        <a class="btn secondary" href="./">Explore Clipwell Extension</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>&copy; 2026 FlowBench Lab &middot; Clipwell</span>
+      <span><a href="./">Overview</a> &middot; <a href="./privacy.html">Privacy Policy</a> &middot; <a href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" rel="noopener">Polar Checkout</a></span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const SAMPLE_HTML = [
+        '<table>',
+        '  <thead>',
+        '    <tr><th rowspan="2">Engine</th><th colspan="2">Benchmark Metrics</th><th rowspan="2">Notes</th></tr>',
+        '    <tr><th>Latency (ms)</th><th>Throughput</th></tr>',
+        '  </thead>',
+        '  <tbody>',
+        '    <tr><td>Edge Worker</td><td>12.4</td><td>4,800 req/s</td><td>Supports pipe | escape &amp; UTF-8</td></tr>',
+        '    <tr><td>Local WASM</td><td>3.1</td><td>9,250 req/s</td><td>Zero network upload; activeTab safe</td></tr>',
+        '  </tbody>',
+        '</table>'
+      ].join('\n');
+
+      const SAMPLE_CSV = [
+        'Platform,Delimiter,"Escaping, Notes",Max Columns',
+        'Markdown Pipe,|,"Escape ""|"" as \\| and keep single-line rows",Unlimited',
+        'Google Sheets TSV,Tab,"Normalize newlines inside cells",18278',
+        'RFC 4180 CSV,",","Double quotes inside ""quoted"" cells",Unlimited'
+      ].join('\n');
+
+      const SAMPLE_TSV = [
+        'Endpoint\tMethod\tP95 Latency\tStatus',
+        '/v1/tables/normalize\tPOST\t14 ms\t200 OK',
+        '/v1/markdown/export\tPOST\t19 ms\t200 OK',
+        '/v1/license/validate\tPOST\t42 ms\t200 OK'
+      ].join('\n');
+
+      const rawInputEl = document.getElementById('raw-input');
+      const cleanOutputEl = document.getElementById('clean-output');
+      const inputModeEl = document.getElementById('input-mode');
+      const optHeaderEl = document.getElementById('opt-header');
+      const optAlignEl = document.getElementById('opt-align');
+      const optTrimEl = document.getElementById('opt-trim');
+      const optRepeatMergedEl = document.getElementById('opt-repeat-merged');
+      const detectedBadgeEl = document.getElementById('detected-badge');
+      const outputLabelEl = document.getElementById('output-label');
+      const statsOutputEl = document.getElementById('stats-output');
+      const statusMsgEl = document.getElementById('status-msg');
+      const tabBtns = Array.from(document.querySelectorAll('button.tab'));
+
+      let activeFormat = 'markdown';
+      let currentOutputs = { markdown: '', tsv: '', csv: '' };
+      let statusTimer = null;
+
+      function setStatus(msg) {
+        statusMsgEl.textContent = msg;
+        if (statusTimer) clearTimeout(statusTimer);
+        if (msg) {
+          statusTimer = setTimeout(function () {
+            statusMsgEl.textContent = '';
+          }, 2600);
+        }
+      }
+
+      function stripBom(str) {
+        return str && str.charCodeAt(0) === 65279 ? str.slice(1) : str;
+      }
+
+      function countDelimiterOutsideQuotes(line, delim) {
+        let count = 0;
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const ch = line[i];
+          if (ch === '"') {
+            if (inQuotes && line[i + 1] === '"') {
+              i++;
+            } else {
+              inQuotes = !inQuotes;
+            }
+          } else if (ch === delim && !inQuotes) {
+            count++;
+          }
+        }
+        return count;
+      }
+
+      function detectInputFormat(raw) {
+        const s = stripBom(raw).trim();
+        if (!s) return 'csv';
+        if (/<table[\s>]|<tr[\s>]|<t[hd][\s>]|role\s*=\s*["'](?:table|grid|row)["']/i.test(s)) {
+          return 'html';
+        }
+        const sampleLines = s.split(/\r\n|\n|\r/).filter(Boolean).slice(0, 8);
+        let tabScore = 0;
+        let commaScore = 0;
+        for (const line of sampleLines) {
+          tabScore += countDelimiterOutsideQuotes(line, '\t');
+          commaScore += countDelimiterOutsideQuotes(line, ',');
+        }
+        return tabScore > 0 && tabScore >= commaScore ? 'tsv' : 'csv';
+      }
+
+      function parseDelimited(raw, delimiter) {
+        const text = stripBom(raw);
+        if (!text.trim()) return [];
+        const rows = [];
+        let row = [];
+        let field = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < text.length; i++) {
+          const ch = text[i];
+          if (inQuotes) {
+            if (ch === '"') {
+              if (text[i + 1] === '"') {
+                field += '"';
+                i++;
+              } else {
+                inQuotes = false;
+              }
+            } else {
+              field += ch;
+            }
+          } else if (ch === '"' && field.trim().length === 0) {
+            field = '';
+            inQuotes = true;
+          } else if (ch === delimiter) {
+            row.push(field);
+            field = '';
+          } else if (ch === '\r') {
+            if (text[i + 1] === '\n') i++;
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = '';
+          } else if (ch === '\n') {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = '';
+          } else {
+            field += ch;
+          }
+        }
+
+        if (field.length > 0 || row.length > 0) {
+          row.push(field);
+          rows.push(row);
+        }
+
+        return rows.filter(function (r) {
+          return r.some(function (cell) {
+            return cell.trim().length > 0;
+          });
+        });
+      }
+
+      function extractCellText(cellEl) {
+        const clone = cellEl.cloneNode(true);
+        const breaks = clone.querySelectorAll('br');
+        for (let i = 0; i < breaks.length; i++) {
+          breaks[i].replaceWith(document.createTextNode(' '));
+        }
+        return (clone.textContent || '').trim();
+      }
+
+      function parseHtmlOrAriaTable(raw, repeatMerged) {
+        const cleaned = stripBom(raw).trim();
+        if (!cleaned) return [];
+        const parser = new DOMParser();
+        const wrapped = /<table[\s>]/i.test(cleaned)
+          ? cleaned
+          : /<tr[\s>]/i.test(cleaned)
+            ? '<table>' + cleaned + '</table>'
+            : cleaned;
+        const doc = parser.parseFromString(wrapped, 'text/html');
+        const tableEl = doc.querySelector('table');
+
+        if (tableEl) {
+          const trList = Array.from(tableEl.querySelectorAll('tr'));
+          const matrix = [];
+          const occupied = [];
+
+          for (let r = 0; r < trList.length; r++) {
+            const tr = trList[r];
+            if (!matrix[r]) matrix[r] = [];
+            if (!occupied[r]) occupied[r] = [];
+
+            const cells = Array.from(tr.children).filter(function (el) {
+              return el.tagName === 'TH' || el.tagName === 'TD';
+            });
+            let c = 0;
+            for (const cell of cells) {
+              while (occupied[r][c]) c++;
+              const rowSpan = Math.max(1, Math.min(100, parseInt(cell.getAttribute('rowspan') || '1', 10) || 1));
+              const colSpan = Math.max(1, Math.min(100, parseInt(cell.getAttribute('colspan') || '1', 10) || 1));
+              const val = extractCellText(cell);
+
+              for (let dr = 0; dr < rowSpan; dr++) {
+                if (!matrix[r + dr]) matrix[r + dr] = [];
+                if (!occupied[r + dr]) occupied[r + dr] = [];
+                for (let dc = 0; dc < colSpan; dc++) {
+                  occupied[r + dr][c + dc] = true;
+                  matrix[r + dr][c + dc] = (dr === 0 && dc === 0) || repeatMerged ? val : '';
+                }
+              }
+              c += colSpan;
+            }
+          }
+          return matrix;
+        }
+
+        const ariaRows = Array.from(doc.querySelectorAll('[role="row"]'));
+        return ariaRows.map(function (rowEl) {
+          return Array.from(
+            rowEl.querySelectorAll('[role="columnheader"], [role="rowheader"], [role="gridcell"], [role="cell"]')
+          ).map(extractCellText);
+        }).filter(function (r) {
+          return r.length > 0;
+        });
+      }
+
+      function normalizeGrid(rows, normalizeWhitespace) {
+        if (!rows || rows.length === 0) return [];
+        const maxCols = rows.reduce(function (max, r) {
+          return Math.max(max, r.length);
+        }, 0);
+        if (maxCols === 0) return [];
+
+        return rows.map(function (r) {
+          const out = [];
+          for (let i = 0; i < maxCols; i++) {
+            let val = r[i] == null ? '' : String(r[i]);
+            if (normalizeWhitespace) {
+              val = val.replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').trim();
+            }
+            out.push(val);
+          }
+          return out;
+        });
+      }
+
+      function buildMarkdown(grid, firstRowHeader, alignPipes) {
+        if (grid.length === 0) return '';
+        const cols = grid[0].length;
+        const working = grid.slice();
+        if (!firstRowHeader) {
+          const synthetic = [];
+          for (let i = 0; i < cols; i++) {
+            synthetic.push('Column ' + (i + 1));
+          }
+          working.unshift(synthetic);
+        }
+
+        const escaped = working.map(function (row) {
+          return row.map(function (cell) {
+            return cell.replace(/\r\n|\r|\n/g, ' ').replace(/\|/g, '\\|');
+          });
+        });
+
+        const widths = new Array(cols).fill(3);
+        if (alignPipes) {
+          for (const row of escaped) {
+            for (let c = 0; c < cols; c++) {
+              if (row[c].length > widths[c]) widths[c] = row[c].length;
+            }
+          }
+        }
+
+        function formatRow(cells) {
+          const padded = cells.map(function (cell, idx) {
+            return alignPipes ? cell.padEnd(widths[idx], ' ') : cell;
+          });
+          return '| ' + padded.join(' | ') + ' |';
+        }
+
+        const divider = widths.map(function (w) {
+          return '-'.repeat(alignPipes ? w : 3);
+        });
+
+        const lines = [formatRow(escaped[0]), '| ' + divider.join(' | ') + ' |'];
+        for (let r = 1; r < escaped.length; r++) {
+          lines.push(formatRow(escaped[r]));
+        }
+        return lines.join('\n');
+      }
+
+      function formatCsvField(val) {
+        if (/[",\r\n]/.test(val)) {
+          return '"' + val.replace(/"/g, '""') + '"';
+        }
+        return val;
+      }
+
+      function formatTsvField(val) {
+        if (/["\t\r\n]/.test(val)) {
+          return '"' + val.replace(/"/g, '""') + '"';
+        }
+        return val;
+      }
+
+      function buildCsv(grid) {
+        return grid.map(function (row) {
+          return row.map(formatCsvField).join(',');
+        }).join('\n');
+      }
+
+      function buildTsv(grid) {
+        return grid.map(function (row) {
+          return row.map(formatTsvField).join('\t');
+        }).join('\n');
+      }
+
+      function updateView() {
+        const raw = rawInputEl.value;
+        const selectedMode = inputModeEl.value;
+        const effectiveMode = selectedMode === 'auto' ? detectInputFormat(raw) : selectedMode;
+        const modeLabelMap = { html: 'HTML / ARIA', csv: 'CSV', tsv: 'TSV' };
+        detectedBadgeEl.textContent = (selectedMode === 'auto' ? 'Detected: ' : 'Mode: ') + (modeLabelMap[effectiveMode] || 'CSV');
+
+        const repeatMerged = optRepeatMergedEl.checked;
+        let parsed = [];
+        if (effectiveMode === 'html') {
+          parsed = parseHtmlOrAriaTable(raw, repeatMerged);
+        } else if (effectiveMode === 'tsv') {
+          parsed = parseDelimited(raw, '\t');
+        } else {
+          parsed = parseDelimited(raw, ',');
+        }
+
+        const grid = normalizeGrid(parsed, optTrimEl.checked);
+        currentOutputs = {
+          markdown: buildMarkdown(grid, optHeaderEl.checked, optAlignEl.checked),
+          tsv: buildTsv(grid),
+          csv: buildCsv(grid)
+        };
+
+        const outText = currentOutputs[activeFormat] || '';
+        cleanOutputEl.value = outText;
+
+        const labelMap = {
+          markdown: 'Clean Pipe Markdown Output',
+          tsv: 'Google Sheets TSV Output',
+          csv: 'Normalized RFC 4180 CSV Output'
+        };
+        outputLabelEl.textContent = labelMap[activeFormat];
+
+        const rowCount = grid.length;
+        const colCount = rowCount > 0 ? grid[0].length : 0;
+        statsOutputEl.textContent = rowCount + ' rows · ' + colCount + ' columns · ' + outText.length + ' chars';
+      }
+
+      tabBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeFormat = btn.getAttribute('data-format') || 'markdown';
+          tabBtns.forEach(function (other) {
+            const isMatch = other === btn;
+            other.classList.toggle('active', isMatch);
+            other.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+          });
+          updateView();
+        });
+      });
+
+      document.getElementById('sample-html-btn').addEventListener('click', function () {
+        inputModeEl.value = 'auto';
+        rawInputEl.value = SAMPLE_HTML;
+        updateView();
+        setStatus('Loaded HTML table sample with colspan & rowspan.');
+      });
+
+      document.getElementById('sample-csv-btn').addEventListener('click', function () {
+        inputModeEl.value = 'auto';
+        rawInputEl.value = SAMPLE_CSV;
+        updateView();
+        setStatus('Loaded quoted CSV sample.');
+      });
+
+      document.getElementById('sample-tsv-btn').addEventListener('click', function () {
+        inputModeEl.value = 'auto';
+        rawInputEl.value = SAMPLE_TSV;
+        updateView();
+        setStatus('Loaded TSV sample.');
+      });
+
+      document.getElementById('clear-btn').addEventListener('click', function () {
+        rawInputEl.value = '';
+        updateView();
+        setStatus('Cleared.');
+      });
+
+      document.getElementById('copy-btn').addEventListener('click', function () {
+        const text = cleanOutputEl.value;
+        if (!text) {
+          setStatus('Nothing to copy yet.');
+          return;
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            setStatus('Copied ' + activeFormat.toUpperCase() + ' output to clipboard.');
+          }, function () {
+            cleanOutputEl.select();
+            document.execCommand('copy');
+            setStatus('Copied ' + activeFormat.toUpperCase() + ' output.');
+          });
+        } else {
+          cleanOutputEl.select();
+          document.execCommand('copy');
+          setStatus('Copied ' + activeFormat.toUpperCase() + ' output.');
+        }
+      });
+
+      document.getElementById('download-btn').addEventListener('click', function () {
+        const text = cleanOutputEl.value;
+        if (!text) {
+          setStatus('Nothing to download yet.');
+          return;
+        }
+        const meta = {
+          markdown: { ext: 'md', mime: 'text/markdown;charset=utf-8' },
+          tsv: { ext: 'tsv', mime: 'text/tab-separated-values;charset=utf-8' },
+          csv: { ext: 'csv', mime: 'text/csv;charset=utf-8' }
+        }[activeFormat] || { ext: 'txt', mime: 'text/plain;charset=utf-8' };
+
+        const blob = new Blob([text], { type: meta.mime });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'cleaned-table.' + meta.ext;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 1000);
+        setStatus('Downloaded cleaned-table.' + meta.ext + '.');
+      });
+
+      [rawInputEl, inputModeEl, optHeaderEl, optAlignEl, optTrimEl, optRepeatMergedEl].forEach(function (el) {
+        el.addEventListener('input', updateView);
+        el.addEventListener('change', updateView);
+      });
+
+      rawInputEl.value = SAMPLE_HTML;
+      updateView();
+    })();
+  </script>
+</body>
+</html>
