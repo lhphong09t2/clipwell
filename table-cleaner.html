@@ -1006,8 +1006,8 @@
         const s = stripBom(raw).trim();
         if (!s) return 'csv';
         const startsLikeMarkup = /^(?:<!--[\s\S]*?-->\s*)*<(?:!doctype\b|[a-z][a-z0-9-]*\b)/i.test(s);
-        const hasTableTokens = /<table[\s>]|<tr[\s>]|<t[hd][\s>]|role\s*=\s*["'](?:table|grid|row)["']/i.test(s);
-        const hasClosingMarkup = /<\/(?:table|tr|td|th|thead|tbody|div|section|main|article)\s*>/i.test(s);
+        const hasTableTokens = /<(?:table|thead|tbody|tfoot|tr|t[hd])[\s>]|role\s*=\s*["'](?:table|grid|treegrid|row|rowgroup|columnheader|rowheader|gridcell|cell)["']/i.test(s);
+        const hasClosingMarkup = /<\/[a-z][a-z0-9-]*\s*>/i.test(s);
         if (startsLikeMarkup && hasTableTokens && hasClosingMarkup) {
           return 'html';
         }
@@ -1078,20 +1078,28 @@
 
       function extractCellText(cellEl) {
         const clone = cellEl.cloneNode(true);
-        const noise = clone.querySelectorAll('script, style, template, noscript, [aria-hidden="true"]');
+        const noise = clone.querySelectorAll('script, style, template, noscript, svg, [hidden], .sr-only, .mw-editsection, [aria-hidden="true"]');
         for (let i = 0; i < noise.length; i++) {
           noise[i].remove();
+        }
+        const hiddenStyled = clone.querySelectorAll('[style]');
+        for (let i = 0; i < hiddenStyled.length; i++) {
+          const st = hiddenStyled[i].getAttribute('style') || '';
+          if (/(?:^|;)\s*display\s*:\s*none(?:\s*!important)?\s*(?:;|$)/i.test(st) ||
+              /(?:^|;)\s*visibility\s*:\s*(?:hidden|collapse)(?:\s*!important)?\s*(?:;|$)/i.test(st)) {
+            hiddenStyled[i].remove();
+          }
         }
         const breaks = clone.querySelectorAll('br');
         for (let i = 0; i < breaks.length; i++) {
           breaks[i].replaceWith(document.createTextNode(' '));
         }
-        const nested = clone.querySelectorAll('table, th, td, tr');
+        const nested = clone.querySelectorAll('table, thead, tbody, tfoot, th, td, tr, p, div, li, ul, ol, blockquote, pre, h1, h2, h3, h4, h5, h6, dt, dd, section, article');
         for (let i = 0; i < nested.length; i++) {
           nested[i].before(' ');
           nested[i].append(' ');
         }
-        return (clone.textContent || '').trim();
+        return (clone.textContent || '').replace(/ {2,}/g, ' ').trim();
       }
 
       function parseSpanCount(cellEl, htmlAttr, ariaAttr) {
