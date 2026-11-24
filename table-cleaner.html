@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#090d16" />
+  <meta name="theme-color" content="#FAF8F4" />
   <title>Free CSV, TSV &amp; HTML Table to Markdown Converter — Clipwell</title>
   <meta name="description" content="Convert CSV, TSV, and HTML tables (including colspan, rowspan, and ARIA grids) into clean pipe-aligned Markdown, Google Sheets TSV, or RFC 4180 CSV locally in your browser." />
   <link rel="canonical" href="https://lhphong09t2.github.io/clipwell/table-cleaner.html" />
-  <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
-  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="./favicon.ico" sizes="any" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
 
   <meta property="og:type" content="website" />
@@ -45,7 +45,7 @@
       "email": "lhphong09t2@gmail.com",
       "sameAs": [
         "https://www.youtube.com/@FlowBenchLab",
-        "https://www.facebook.com/profile.php?id=61596629317479"
+        "https://www.facebook.com/flowbenchlab"
       ]
     },
     "offers": {
@@ -58,34 +58,69 @@
 
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #090d16;
-      --surface: #0f1624;
-      --surface-2: #141d2f;
-      --card: #182338;
-      --border: rgba(148, 163, 184, 0.15);
-      --border-strong: rgba(148, 163, 184, 0.28);
-      --border-emerald: rgba(16, 185, 129, 0.42);
-      --text: #f8fafc;
-      --text-soft: #cbd5e1;
-      --muted: #94a3b8;
-      --subtle: #64748b;
-      --accent: #10b981;
-      --accent-hover: #34d399;
-      --accent-ink: #032215;
+      color-scheme: light;
+      --bg: #FAF8F4;
+      --surface: #FFFFFF;
+      --surface-2: #F0ECE3;
+      --card: #FFFFFF;
+      --footer-bg: #F3EFE7;
+      --header-bg: rgba(250, 248, 244, 0.92);
+      --showcase-bar-bg: #F4F0E8;
+      --border: #E6E2D8;
+      --border-strong: #D2CCC0;
+      --border-accent: rgba(217, 67, 34, 0.36);
+      --text: #18181B;
+      --text-soft: #292524;
+      --muted: #57534E;
+      --subtle: #78716C;
+      --accent: #D94322;
+      --accent-hover: #BC3315;
+      --accent-soft: #9F290E;
+      --accent-wash: rgba(217, 67, 34, 0.09);
+      --accent-wash-strong: rgba(217, 67, 34, 0.14);
+      --accent-ink: #FFFFFF;
+      --shadow-card: 0 2px 10px rgba(24, 24, 27, 0.06), 0 1px 2px rgba(24, 24, 27, 0.04);
+      --shadow-elev: 0 18px 42px rgba(24, 24, 27, 0.12);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #141413;
+        --surface: #1E1D1B;
+        --surface-2: #272522;
+        --card: #1E1D1B;
+        --footer-bg: #0E0E0D;
+        --header-bg: rgba(20, 20, 19, 0.92);
+        --showcase-bar-bg: #1A1917;
+        --border: #2E2C28;
+        --border-strong: #413E38;
+        --border-accent: rgba(240, 90, 57, 0.42);
+        --text: #F5F3EE;
+        --text-soft: #E7E5E4;
+        --muted: #A8A29E;
+        --subtle: #78716C;
+        --accent: #F05A39;
+        --accent-hover: #FF785A;
+        --accent-soft: #FF947A;
+        --accent-wash: rgba(240, 90, 57, 0.14);
+        --accent-wash-strong: rgba(240, 90, 57, 0.22);
+        --accent-ink: #141413;
+        --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.35);
+        --shadow-elev: 0 24px 48px rgba(0, 0, 0, 0.55);
+      }
     }
     *, *::before, *::after { box-sizing: border-box; }
     html {
-      background-color: #090d16;
+      background-color: var(--bg);
       scroll-behavior: smooth;
       scroll-padding-top: 84px;
     }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
-      background-color: #090d16;
+      background-color: var(--bg);
       background-image:
-        radial-gradient(900px 380px at 50% 0%, rgba(16, 185, 129, 0.12), #090d16 72%);
+        radial-gradient(920px 420px at 50% 0%, var(--accent-wash), var(--bg) 72%);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -99,7 +134,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background-color: rgba(9, 13, 22, 0.88);
+      background-color: var(--header-bg);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
@@ -128,7 +163,7 @@
       min-height: 44px;
     }
     .brand:hover { text-decoration: none; color: var(--text); }
-    .brand svg { flex-shrink: 0; border-radius: 7px; }
+    .brand svg, .brand img { flex-shrink: 0; border-radius: 7px; }
     .desktop-nav {
       display: flex;
       align-items: center;
@@ -208,11 +243,11 @@
       max-height: calc(100dvh - 76px);
       overflow-y: auto;
       overscroll-behavior: contain;
-      background-color: #0f1624;
+      background-color: var(--surface);
       border: 1px solid var(--border-strong);
       border-radius: 14px;
       padding: 12px;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65);
+      box-shadow: var(--shadow-elev);
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -268,9 +303,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background-color: rgba(16, 185, 129, 0.1);
-      color: #6ee7b7;
-      border: 1px solid rgba(16, 185, 129, 0.32);
+      background-color: var(--accent-wash);
+      color: var(--accent-soft);
+      border: 1px solid var(--border-accent);
       padding: 5px 13px;
       border-radius: 999px;
       font-size: 12px;
@@ -306,7 +341,7 @@
       border-radius: 16px;
       padding: 22px;
       margin-bottom: 40px;
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38);
+      box-shadow: var(--shadow-elev);
     }
     @media (max-width: 520px) {
       .tool-shell { padding: 16px; }
@@ -373,7 +408,7 @@
     }
     button.tab:hover { color: var(--text); border-color: var(--border-strong); }
     button.tab.active {
-      background-color: rgba(16, 185, 129, 0.14);
+      background-color: var(--accent-wash-strong);
       color: var(--accent-hover);
       border-color: var(--accent);
     }
@@ -549,10 +584,10 @@
 
     .cta-box {
       background-color: var(--surface-2);
-      border: 1px solid var(--border-emerald);
+      border: 1px solid var(--border-accent);
       border-radius: 16px;
       padding: 28px;
-      box-shadow: 0 18px 44px rgba(16, 185, 129, 0.08);
+      box-shadow: var(--shadow-elev);
     }
     @media (max-width: 520px) {
       .cta-box { padding: 20px; }
@@ -581,7 +616,7 @@
     /* Unified Footer */
     .site-footer {
       border-top: 1px solid var(--border);
-      background-color: #070a12;
+      background-color: var(--footer-bg);
       padding: 48px 20px 36px;
     }
     .footer-inner {
@@ -652,16 +687,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="./">
-        <svg viewBox="0 0 128 128" width="28" height="28" aria-hidden="true">
-          <rect x="0" y="0" width="128" height="128" rx="28" fill="#090D16"/>
-          <rect x="18" y="24" width="92" height="86" rx="16" fill="#111827" stroke="#10B981" stroke-width="6"/>
-          <rect x="42" y="12" width="44" height="18" rx="9" fill="#10B981"/>
-          <rect x="30" y="44" width="68" height="13" rx="4" fill="#F8FAFC"/>
-          <rect x="30" y="65" width="40" height="11" rx="3.5" fill="#10B981"/>
-          <rect x="76" y="65" width="22" height="11" rx="3.5" fill="#64748B"/>
-          <rect x="30" y="84" width="40" height="11" rx="3.5" fill="#94A3B8"/>
-          <rect x="76" y="84" width="22" height="11" rx="3.5" fill="#34D399"/>
-        </svg>
+        <img src="./icon.svg" alt="Clipwell — The Hash Clip" width="28" height="28" />
         <span>Clipwell</span>
       </a>
 
@@ -692,6 +718,7 @@
           <a href="./privacy.html">Privacy Policy</a>
           <div class="mobile-cta-group">
             <a class="btn primary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
+        <a class="btn secondary" href="https://microsoftedge.microsoft.com/addons/detail/hjmafldhdphpjmkliibmalkfpceifbbp" target="_blank" rel="noopener">Add to Edge &mdash; Free</a>
             <a class="btn secondary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Unlock Pro Lifetime &mdash; $29</a>
           </div>
         </nav>
@@ -832,6 +859,7 @@
       <p>The free <strong>Clipwell</strong> Chrome extension extracts intact HTML <code>&lt;table&gt;</code> elements, ARIA grids, and AI threads directly from your active tab with zero all-sites permissions. Upgrade to <strong>Clipwell Pro ($29 one-time)</strong> to batch-export every table on a page or build up to 50-page Research Clip Queues.</p>
       <div class="cta-row">
         <a class="btn primary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
+        <a class="btn secondary" href="https://microsoftedge.microsoft.com/addons/detail/hjmafldhdphpjmkliibmalkfpceifbbp" target="_blank" rel="noopener">Add to Edge &mdash; Free</a>
         <a class="btn secondary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Unlock Pro Lifetime &mdash; $29</a>
         <a class="btn secondary" href="./">Explore Clipwell Overview</a>
       </div>
@@ -843,16 +871,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand" href="./">
-            <svg viewBox="0 0 128 128" width="26" height="26" aria-hidden="true">
-              <rect x="0" y="0" width="128" height="128" rx="28" fill="#090D16"/>
-              <rect x="18" y="24" width="92" height="86" rx="16" fill="#111827" stroke="#10B981" stroke-width="6"/>
-              <rect x="42" y="12" width="44" height="18" rx="9" fill="#10B981"/>
-              <rect x="30" y="44" width="68" height="13" rx="4" fill="#F8FAFC"/>
-              <rect x="30" y="65" width="40" height="11" rx="3.5" fill="#10B981"/>
-              <rect x="76" y="65" width="22" height="11" rx="3.5" fill="#64748B"/>
-              <rect x="30" y="84" width="40" height="11" rx="3.5" fill="#94A3B8"/>
-              <rect x="76" y="84" width="22" height="11" rx="3.5" fill="#34D399"/>
-            </svg>
+            <img src="./icon.svg" alt="Clipwell — The Hash Clip" width="26" height="26" />
             <span>Clipwell</span>
           </a>
           <p>Local-first Chrome Manifest V3 Markdown, HTML/ARIA table, and AI thread clipper by FlowBench Lab.</p>
@@ -862,6 +881,7 @@
           <h3>Product</h3>
           <ul>
             <li><a href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Chrome Web Store</a></li>
+            <li><a href="https://microsoftedge.microsoft.com/addons/detail/hjmafldhdphpjmkliibmalkfpceifbbp" target="_blank" rel="noopener">Microsoft Edge Add-ons</a></li>
             <li><a href="./table-cleaner.html">Free Table Cleaner</a></li>
             <li><a href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Clipwell Pro ($29)</a></li>
             <li><a href="./#activate">License Activation</a></li>
@@ -882,14 +902,14 @@
           <h3>FlowBench Lab</h3>
           <ul>
             <li><a href="https://www.youtube.com/@FlowBenchLab" target="_blank" rel="noopener">YouTube (@FlowBenchLab)</a></li>
-            <li><a href="https://www.facebook.com/profile.php?id=61596629317479" target="_blank" rel="noopener">Facebook Page</a></li>
+            <li><a href="https://www.facebook.com/flowbenchlab" target="_blank" rel="noopener">Facebook Page</a></li>
             <li><a href="mailto:lhphong09t2@gmail.com">lhphong09t2@gmail.com</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; 2026 FlowBench Lab &middot; Clipwell v1.0.0</span>
+        <span>&copy; 2026 FlowBench Lab &middot; Clipwell v1.1</span>
         <span>100% Client-Side Execution &middot; Zero Server Upload</span>
       </div>
     </div>
@@ -980,6 +1000,142 @@
         }
       }
 
+      const INVISIBLE_CTRL_RE = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]+/g;
+      const LEADING_INVISIBLE_RE = /^[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]+/;
+      const MAX_NESTED_TABLE_DEPTH = 4;
+
+      const NOISE_TAGS = new Set([
+        'SCRIPT', 'STYLE', 'NOSCRIPT', 'TEMPLATE', 'SVG',
+        'NAV', 'FOOTER', 'ASIDE', 'BUTTON', 'SELECT', 'OPTION',
+        'OPTGROUP', 'INPUT', 'TEXTAREA', 'DIALOG'
+      ]);
+
+      const NOISE_ROLES = new Set([
+        'navigation', 'banner', 'contentinfo', 'dialog',
+        'toolbar', 'menu', 'menubar', 'listbox'
+      ]);
+
+      const NOISE_CLASSES = new Set([
+        'mw-editsection', 'sr-only', 'cookie-banner', 'advertisement', 'ad-container'
+      ]);
+
+      const CELL_BLOCK_TAGS = new Set([
+        'P', 'DIV', 'LI', 'UL', 'OL', 'TABLE', 'THEAD', 'TBODY', 'TFOOT',
+        'TR', 'TH', 'TD', 'BLOCKQUOTE', 'PRE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
+        'SECTION', 'ARTICLE', 'DT', 'DD', 'HR'
+      ]);
+
+      const HTML_TAG_NAMES = new Set([
+        'a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo',
+        'bgsound', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code',
+        'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div',
+        'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form',
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i',
+        'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'main', 'map',
+        'mark', 'marquee', 'math', 'menu', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol',
+        'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp',
+        'rt', 'ruby', 's', 'samp', 'script', 'search', 'section', 'select', 'slot', 'small',
+        'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'svg', 'table', 'tbody',
+        'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track',
+        'u', 'ul', 'var', 'video', 'wbr', 'xss'
+      ]);
+
+      function collapseWs(str) {
+        return String(str || '')
+          .replace(/\u00a0/g, ' ')
+          .replace(/[ \t\r\n]+/g, ' ')
+          .trim();
+      }
+
+      function escapeRawTextMarkdown(str) {
+        const s = String(str || '');
+        if (!s) return '';
+        return s
+          .replace(/\\/g, '\\\\')
+          .replace(/\[/g, '\\[')
+          .replace(/\]/g, '\\]')
+          .replace(/</g, '\\<')
+          .replace(/`/g, '\\`');
+      }
+
+      function escapeMdBrackets(str) {
+        return String(str || '')
+          .replace(/\\/g, '\\\\')
+          .replace(/\[/g, '\\[')
+          .replace(/\]/g, '\\]');
+      }
+
+      function escapeMdLinkLabel(str) {
+        return escapeMdBrackets(str)
+          .replace(/</g, '\\<')
+          .replace(/>/g, '\\>')
+          .replace(/`/g, '\\`');
+      }
+
+      function escapeMdCell(str) {
+        return escapeRawTextMarkdown(collapseWs(str)).replace(/\|/g, '\\|');
+      }
+
+      function escapeMdCellRawFragment(str) {
+        return escapeRawTextMarkdown(String(str || '')).replace(/\|/g, '\\|');
+      }
+
+      function encodeMdUrl(urlStr) {
+        return String(urlStr || '')
+          .replace(/\\/g, '%5C')
+          .replace(/ /g, '%20')
+          .replace(/\(/g, '%28')
+          .replace(/\)/g, '%29')
+          .replace(/"/g, '%22')
+          .replace(/</g, '%3C')
+          .replace(/>/g, '%3E')
+          .replace(/\|/g, '%7C');
+      }
+
+      function sanitizeUrl(raw, baseUrl) {
+        const trimmed = String(raw || '').replace(/[\u0000-\u001f\u007f]+/g, '').trim();
+        if (!trimmed) return '';
+        const schemeProbe = trimmed.replace(/[\s\u00a0]+/g, '');
+        if (/^(javascript|data|vbscript|file):/i.test(schemeProbe)) return '';
+
+        const colonIdx = trimmed.indexOf(':');
+        const slashIdx = trimmed.search(/[/?#]/);
+        if (colonIdx > 0 && (slashIdx === -1 || colonIdx < slashIdx)) {
+          const rawScheme = trimmed.slice(0, colonIdx);
+          if (!/^[a-zA-Z][a-zA-Z0-9+.-]*$/.test(rawScheme)) return '';
+          if (!/^(https?|mailto|tel)$/i.test(rawScheme)) return '';
+          try {
+            const parsed = new URL(trimmed);
+            if (!/^(https?|mailto|tel):$/i.test(parsed.protocol)) return '';
+            return encodeMdUrl(parsed.href);
+          } catch (_) {
+            return '';
+          }
+        }
+        if (trimmed.indexOf('//') === 0) {
+          let baseProto = 'https:';
+          if (baseUrl) {
+            try {
+              const parsedBase = new URL(baseUrl);
+              if (/^https?:$/i.test(parsedBase.protocol)) baseProto = parsedBase.protocol;
+            } catch (_) {}
+          }
+          try {
+            return encodeMdUrl(new URL(baseProto + trimmed).href);
+          } catch (_) {
+            return '';
+          }
+        }
+        if (baseUrl) {
+          try {
+            const resolved = new URL(trimmed, baseUrl);
+            if (!/^(https?|mailto|tel):$/i.test(resolved.protocol)) return '';
+            return encodeMdUrl(resolved.href);
+          } catch (_) {}
+        }
+        return encodeMdUrl(trimmed);
+      }
+
       function stripBom(str) {
         return str && str.charCodeAt(0) === 65279 ? str.slice(1) : str;
       }
@@ -1005,10 +1161,15 @@
       function detectInputFormat(raw) {
         const s = stripBom(raw).trim();
         if (!s) return 'csv';
-        const startsLikeMarkup = /^(?:<!--[\s\S]*?-->\s*)*<(?:!doctype\b|[a-z][a-z0-9-]*\b)/i.test(s);
-        const hasTableTokens = /<(?:table|thead|tbody|tfoot|tr|t[hd])[\s>]|role\s*=\s*["'](?:table|grid|treegrid|row|rowgroup|columnheader|rowheader|gridcell|cell)["']/i.test(s);
-        const hasClosingMarkup = /<\/[a-z][a-z0-9-]*\s*>/i.test(s);
-        if (startsLikeMarkup && hasTableTokens && hasClosingMarkup) {
+        // Detect HTML table/row/cell or ARIA table/grid/treegrid markup anywhere in input (supports prefixed text & bare <td>/<th>)
+        const hasPairedTableHtml =
+          /<table[\s>][\s\S]*<\/table\s*>/i.test(s) ||
+          /<tr[\s>][\s\S]*<\/tr\s*>/i.test(s) ||
+          /<t[hd][\s>][\s\S]*<\/t[hd]\s*>/i.test(s);
+        const hasAriaGridHtml =
+          /<[a-z][a-z0-9-]*\b[^>]*role\s*=\s*["'](?:table|grid|treegrid|row|rowgroup|columnheader|rowheader|gridcell|cell)["'][^>]*>/i.test(s) &&
+          /<\/[a-z][a-z0-9-]*\s*>/i.test(s);
+        if (hasPairedTableHtml || hasAriaGridHtml) {
           return 'html';
         }
         const sampleLines = s.split(/\r\n|\n|\r/).filter(Boolean).slice(0, 8);
@@ -1076,113 +1237,516 @@
         });
       }
 
-      function extractCellText(cellEl) {
-        const clone = cellEl.cloneNode(true);
-        const noise = clone.querySelectorAll('script, style, template, noscript, svg, [hidden], .sr-only, .mw-editsection, [aria-hidden="true"]');
-        for (let i = 0; i < noise.length; i++) {
-          noise[i].remove();
+      function hasHiddenInlineStyle(el) {
+        if (!el || el.nodeType !== 1) return false;
+        if (el.style) {
+          const d = typeof el.style.display === 'string' ? el.style.display.trim().toLowerCase() : '';
+          if (d === 'none') return true;
+          const v = typeof el.style.visibility === 'string' ? el.style.visibility.trim().toLowerCase() : '';
+          if (v === 'hidden' || v === 'collapse') return true;
         }
-        const hiddenStyled = clone.querySelectorAll('[style]');
-        for (let i = 0; i < hiddenStyled.length; i++) {
-          const st = hiddenStyled[i].getAttribute('style') || '';
-          if (/(?:^|;)\s*display\s*:\s*none(?:\s*!important)?\s*(?:;|$)/i.test(st) ||
-              /(?:^|;)\s*visibility\s*:\s*(?:hidden|collapse)(?:\s*!important)?\s*(?:;|$)/i.test(st)) {
-            hiddenStyled[i].remove();
-          }
+        const styleAttr = typeof el.getAttribute === 'function' ? el.getAttribute('style') : '';
+        if (styleAttr) {
+          if (/(?:^|;)\s*display\s*:\s*none(?:\s*!important)?\s*(?:;|$)/i.test(styleAttr)) return true;
+          if (/(?:^|;)\s*visibility\s*:\s*(?:hidden|collapse)(?:\s*!important)?\s*(?:;|$)/i.test(styleAttr)) return true;
         }
-        const breaks = clone.querySelectorAll('br');
-        for (let i = 0; i < breaks.length; i++) {
-          breaks[i].replaceWith(document.createTextNode(' '));
-        }
-        const nested = clone.querySelectorAll('table, thead, tbody, tfoot, th, td, tr, p, div, li, ul, ol, blockquote, pre, h1, h2, h3, h4, h5, h6, dt, dd, section, article');
-        for (let i = 0; i < nested.length; i++) {
-          nested[i].before(' ');
-          nested[i].append(' ');
-        }
-        return (clone.textContent || '').replace(/ {2,}/g, ' ').trim();
+        return false;
       }
 
-      function parseSpanCount(cellEl, htmlAttr, ariaAttr) {
-        const raw = cellEl.getAttribute(htmlAttr) || cellEl.getAttribute(ariaAttr) || '1';
+      function isDisplayNoneOrHiddenAttr(el) {
+        if (!el || el.nodeType !== 1) return false;
+        if (typeof el.getAttribute === 'function' && el.getAttribute('hidden') !== null) return true;
+        if (el.style && typeof el.style.display === 'string' && el.style.display.trim().toLowerCase() === 'none') {
+          return true;
+        }
+        const styleAttr = typeof el.getAttribute === 'function' ? el.getAttribute('style') : '';
+        if (styleAttr && /(?:^|;)\s*display\s*:\s*none(?:\s*!important)?\s*(?:;|$)/i.test(styleAttr)) return true;
+        return false;
+      }
+
+      function isNoiseElement(el) {
+        if (!el || el.nodeType !== 1) return false;
+        const tag = (el.tagName || '').toUpperCase();
+        if (NOISE_TAGS.has(tag)) return true;
+        if (typeof el.getAttribute === 'function') {
+          if (el.getAttribute('hidden') !== null) return true;
+          const ariaHidden = el.getAttribute('aria-hidden');
+          if (ariaHidden && String(ariaHidden).trim().toLowerCase() === 'true') return true;
+          const role = el.getAttribute('role');
+          if (role && NOISE_ROLES.has(String(role).trim().toLowerCase())) return true;
+          const cls = el.getAttribute('class');
+          if (cls) {
+            const parts = String(cls).trim().split(/\s+/);
+            for (let i = 0; i < parts.length; i++) {
+              if (NOISE_CLASSES.has(parts[i])) return true;
+            }
+          }
+        }
+        return hasHiddenInlineStyle(el);
+      }
+
+      function extractCellDual(cell, opts) {
+        const options = opts || {};
+        if (!cell) return { raw: '', md: '' };
+        if (isNoiseElement(cell)) return { raw: '', md: '' };
+        const baseUrl = options.baseUrl || '';
+        const ctx = options.ctx || null;
+        const nestedOutputs = options.nestedOutputs || null;
+        const tableDepth = options.tableDepth || 0;
+        const repeatMerged = Boolean(options.repeatMerged);
+
+        const children = cell.childNodes ? Array.from(cell.childNodes) : [];
+        if (children.length > 0) {
+          const rawParts = [];
+          const mdParts = [];
+          function walk(node, inLink) {
+            if (!node) return;
+            if (node.nodeType === 3) {
+              const val = node.nodeValue || '';
+              rawParts.push(val);
+              mdParts.push(escapeMdCellRawFragment(val));
+              return;
+            }
+            if (node.nodeType !== 1 || isNoiseElement(node)) return;
+
+            const tag = (node.tagName || '').toUpperCase();
+            if (tag === 'BR') {
+              rawParts.push(' ');
+              mdParts.push(' ');
+              return;
+            }
+
+            if (isTableContainer(node) && ctx && tableDepth < MAX_NESTED_TABLE_DEPTH) {
+              const nested = extractTableElement(node, baseUrl, ctx, tableDepth + 1, repeatMerged);
+              if (nested && nested.index) {
+                if (nestedOutputs && nested.blocks.length) {
+                  nestedOutputs.push('**Table #' + nested.index + '**\n\n' + nested.blocks[0]);
+                  for (let i = 1; i < nested.blocks.length; i++) {
+                    nestedOutputs.push(nested.blocks[i]);
+                  }
+                }
+                rawParts.push(' [Table #' + nested.index + '] ');
+                mdParts.push(' [Table #' + nested.index + '] ');
+                return;
+              }
+            }
+
+            if (tag === 'IMG') {
+              const rawAlt = collapseWs((typeof node.getAttribute === 'function' && node.getAttribute('alt')) || 'image');
+              const src = sanitizeUrl((typeof node.getAttribute === 'function' && node.getAttribute('src')) || '', baseUrl);
+              if (src) {
+                const mdAlt = escapeMdLinkLabel(rawAlt).replace(/\|/g, '\\|');
+                rawParts.push(' ![' + rawAlt + '](' + src + ') ');
+                mdParts.push(' ![' + mdAlt + '](' + src + ') ');
+              } else if (rawAlt && rawAlt !== 'image') {
+                rawParts.push(' ' + rawAlt + ' ');
+                mdParts.push(' ' + escapeMdCellRawFragment(rawAlt) + ' ');
+              }
+              return;
+            }
+
+            if (tag === 'A') {
+              const rawLinkParts = [];
+              const mdLinkParts = [];
+              function subWalk(n) {
+                if (!n) return;
+                if (n.nodeType === 3) {
+                  const val = n.nodeValue || '';
+                  rawLinkParts.push(val);
+                  mdLinkParts.push(escapeMdLinkLabel(val).replace(/\|/g, '\\|'));
+                  return;
+                }
+                if (n.nodeType !== 1 || isNoiseElement(n)) return;
+                const t = (n.tagName || '').toUpperCase();
+                if (t === 'BR') {
+                  rawLinkParts.push(' ');
+                  mdLinkParts.push(' ');
+                  return;
+                }
+                if (t === 'IMG') {
+                  const a = collapseWs((typeof n.getAttribute === 'function' && n.getAttribute('alt')) || 'image');
+                  const s = sanitizeUrl((typeof n.getAttribute === 'function' && n.getAttribute('src')) || '', baseUrl);
+                  if (s) {
+                    const mdA = escapeMdLinkLabel(a).replace(/\|/g, '\\|');
+                    rawLinkParts.push('![' + a + '](' + s + ')');
+                    mdLinkParts.push('![' + mdA + '](' + s + ')');
+                  }
+                  return;
+                }
+                const kids = n.childNodes ? Array.from(n.childNodes) : [];
+                if (kids.length > 0) {
+                  for (let k = 0; k < kids.length; k++) subWalk(kids[k]);
+                } else if (n.textContent) {
+                  rawLinkParts.push(n.textContent);
+                  mdLinkParts.push(escapeMdLinkLabel(n.textContent).replace(/\|/g, '\\|'));
+                }
+              }
+              const linkKids = node.childNodes ? Array.from(node.childNodes) : [];
+              for (let k = 0; k < linkKids.length; k++) subWalk(linkKids[k]);
+              const fallbackRaw = !linkKids.length && node.textContent ? node.textContent : '';
+              const rawLabel = collapseWs(rawLinkParts.join('') || fallbackRaw);
+              const mdLabel = collapseWs(
+                mdLinkParts.join('') || (fallbackRaw ? escapeMdLinkLabel(fallbackRaw).replace(/\|/g, '\\|') : '')
+              );
+              const href = inLink ? '' : sanitizeUrl((typeof node.getAttribute === 'function' && node.getAttribute('href')) || '', baseUrl);
+              if (href) {
+                rawParts.push(rawLabel ? '[' + rawLabel + '](' + href + ')' : href);
+                mdParts.push(mdLabel ? '[' + mdLabel + '](' + href + ')' : href);
+              } else if (rawLabel) {
+                rawParts.push(rawLabel);
+                mdParts.push(collapseWs(escapeMdCellRawFragment(rawLabel)));
+              }
+              return;
+            }
+
+            const isBlock = CELL_BLOCK_TAGS.has(tag);
+            if (isBlock) {
+              rawParts.push(' ');
+              mdParts.push(' ');
+            }
+            const kids = node.childNodes ? Array.from(node.childNodes) : [];
+            if (kids.length > 0) {
+              for (let k = 0; k < kids.length; k++) walk(kids[k], inLink);
+            } else if (node.textContent) {
+              rawParts.push(node.textContent);
+              mdParts.push(escapeMdCellRawFragment(node.textContent));
+            }
+            if (isBlock) {
+              rawParts.push(' ');
+              mdParts.push(' ');
+            }
+          }
+          for (let i = 0; i < children.length; i++) walk(children[i], false);
+          return { raw: collapseWs(rawParts.join('')), md: collapseWs(mdParts.join('')) };
+        }
+        const rawFallback = collapseWs(cell.textContent);
+        return { raw: rawFallback, md: escapeMdCell(rawFallback) };
+      }
+
+      function extractCellText(cellEl, opts) {
+        return extractCellDual(cellEl, opts).raw;
+      }
+
+      function parseRowspanAttr(cellEl, remainingInSection) {
+        const raw = cellEl.getAttribute('rowspan') || cellEl.getAttribute('aria-rowspan');
+        if (raw === null || raw === undefined || String(raw).trim() === '') return 1;
+        const parsed = parseInt(String(raw).trim(), 10);
+        if (Number.isNaN(parsed) || parsed < 0) return 1;
+        if (parsed === 0) return Math.max(1, remainingInSection || 1);
+        return Math.max(1, Math.min(remainingInSection || 50, parsed));
+      }
+
+      function parseSpanCount(cellEl, htmlAttr, ariaAttr, remainingInSection) {
+        if (htmlAttr === 'rowspan') {
+          return parseRowspanAttr(cellEl, remainingInSection || 50);
+        }
+        const raw = cellEl.getAttribute(htmlAttr) || (ariaAttr ? cellEl.getAttribute(ariaAttr) : null) || '1';
         return Math.max(1, Math.min(50, parseInt(raw, 10) || 1));
       }
 
-      function buildOccupancyMatrix(rowCellLists, repeatMerged) {
-        const rowCount = rowCellLists.length;
-        const matrix = [];
-        const occupied = [];
-
-        for (let r = 0; r < rowCount; r++) {
-          if (!matrix[r]) matrix[r] = [];
-          if (!occupied[r]) occupied[r] = [];
-          const cells = rowCellLists[r];
-          let c = 0;
-          for (const cell of cells) {
-            while (occupied[r][c]) {
-              if (matrix[r][c] === undefined) matrix[r][c] = '';
-              c++;
-            }
-            const rowSpan = parseSpanCount(cell, 'rowspan', 'aria-rowspan');
-            const colSpan = parseSpanCount(cell, 'colspan', 'aria-colspan');
-            const val = extractCellText(cell);
-
-            for (let dr = 0; dr < rowSpan && r + dr < rowCount; dr++) {
-              if (!matrix[r + dr]) matrix[r + dr] = [];
-              if (!occupied[r + dr]) occupied[r + dr] = [];
-              for (let dc = 0; dc < colSpan; dc++) {
-                occupied[r + dr][c + dc] = true;
-                matrix[r + dr][c + dc] = (dr === 0 && dc === 0) || repeatMerged ? val : '';
-              }
-            }
-            c += colSpan;
-          }
-        }
-        return matrix;
+      function isTableContainer(el) {
+        if (!el || el.nodeType !== 1) return false;
+        const tag = (el.tagName || '').toUpperCase();
+        if (tag === 'TABLE') return true;
+        const role = typeof el.getAttribute === 'function' ? String(el.getAttribute('role') || '').trim().toLowerCase() : '';
+        return role === 'table' || role === 'grid' || role === 'treegrid';
       }
 
-      function parseHtmlOrAriaTable(raw, repeatMerged) {
+      function belongsToTable(node, tableEl) {
+        let cur = node ? node.parentElement : null;
+        while (cur && cur !== tableEl) {
+          if (isTableContainer(cur)) return false;
+          cur = cur.parentElement;
+        }
+        return cur === tableEl;
+      }
+
+      function belongsToRow(cell, rowEl) {
+        let cur = cell ? cell.parentElement : null;
+        while (cur && cur !== rowEl) {
+          const tag = (cur.tagName || '').toUpperCase();
+          const role = typeof cur.getAttribute === 'function' ? String(cur.getAttribute('role') || '').trim().toLowerCase() : '';
+          if (tag === 'TR' || role === 'row' || isTableContainer(cur)) return false;
+          cur = cur.parentElement;
+        }
+        return cur === rowEl;
+      }
+
+      function getRowSectionInfo(tr, tableEl) {
+        let cur = tr ? tr.parentElement : null;
+        while (cur && cur !== tableEl) {
+          const tag = (cur.tagName || '').toUpperCase();
+          if (tag === 'THEAD' || tag === 'TBODY' || tag === 'TFOOT') {
+            return { kind: tag, el: cur };
+          }
+          cur = cur.parentElement;
+        }
+        return { kind: 'TBODY', el: tableEl };
+      }
+
+      function getAriaRowGroup(ar, tableEl) {
+        let cur = ar ? ar.parentElement : null;
+        while (cur && cur !== tableEl) {
+          const role = typeof cur.getAttribute === 'function' ? cur.getAttribute('role') : null;
+          if (role && String(role).trim().toLowerCase() === 'rowgroup') return cur;
+          cur = cur.parentElement;
+        }
+        return tableEl;
+      }
+
+      function normalizeMatrix(rows) {
+        if (!rows || rows.length === 0) return [];
+        let width = 0;
+        for (let i = 0; i < rows.length; i++) {
+          if (rows[i].length > width) width = rows[i].length;
+        }
+        return rows.map(function (r) {
+          const copy = r.slice();
+          while (copy.length < width) copy.push('');
+          return copy;
+        });
+      }
+
+      function buildDualMatricesFromSections(sections, repeatMerged, cellOpts) {
+        const rawGrid = [];
+        const mdGrid = [];
+
+        for (let s = 0; s < sections.length; s++) {
+          const rowCellLists = sections[s];
+          const maxRows = rowCellLists.length;
+          if (maxRows === 0) continue;
+          const secRawGrid = Array.from({ length: maxRows }, function () { return []; });
+          const secMdGrid = Array.from({ length: maxRows }, function () { return []; });
+          const occupied = Array.from({ length: maxRows }, function () { return []; });
+
+          for (let r = 0; r < maxRows; r++) {
+            let c = 0;
+            const cells = rowCellLists[r];
+            for (let ci = 0; ci < cells.length; ci++) {
+              const cell = cells[ci];
+              while (occupied[r][c]) {
+                if (secRawGrid[r][c] === undefined) secRawGrid[r][c] = '';
+                if (secMdGrid[r][c] === undefined) secMdGrid[r][c] = '';
+                c++;
+              }
+              const rowSpan = parseRowspanAttr(cell, maxRows - r);
+              const colSpan = parseSpanCount(cell, 'colspan', 'aria-colspan');
+              const dual = extractCellDual(cell, cellOpts);
+
+              for (let dr = 0; dr < rowSpan && r + dr < maxRows; dr++) {
+                for (let dc = 0; dc < colSpan; dc++) {
+                  occupied[r + dr][c + dc] = true;
+                  secRawGrid[r + dr][c + dc] = (dr === 0 && dc === 0) || repeatMerged ? dual.raw : '';
+                  secMdGrid[r + dr][c + dc] = (dr === 0 && dc === 0) || repeatMerged ? dual.md : '';
+                }
+              }
+              c += colSpan;
+            }
+            for (let colIdx = 0; colIdx < secRawGrid[r].length; colIdx++) {
+              if (secRawGrid[r][colIdx] === undefined) secRawGrid[r][colIdx] = '';
+              if (secMdGrid[r][colIdx] === undefined) secMdGrid[r][colIdx] = '';
+            }
+          }
+
+          for (let r = 0; r < secRawGrid.length; r++) {
+            rawGrid.push(secRawGrid[r]);
+            mdGrid.push(secMdGrid[r]);
+          }
+        }
+
+        const nonEmptyRaw = [];
+        const nonEmptyMd = [];
+        for (let i = 0; i < rawGrid.length; i++) {
+          if (rawGrid[i].some(function (cell) { return String(cell || '').length > 0; })) {
+            nonEmptyRaw.push(rawGrid[i]);
+            nonEmptyMd.push(mdGrid[i]);
+          }
+        }
+        return {
+          matrix: normalizeMatrix(nonEmptyRaw),
+          mdMatrix: normalizeMatrix(nonEmptyMd)
+        };
+      }
+
+      function buildMatrixFromSections(sections, repeatMerged, cellOpts) {
+        return buildDualMatricesFromSections(sections, repeatMerged, cellOpts).matrix;
+      }
+
+      function buildOccupancyMatrix(rowCellLists, repeatMerged) {
+        return buildMatrixFromSections([rowCellLists], repeatMerged);
+      }
+
+      function tableElementToDualMatrices(tableEl, repeatMerged, cellOpts) {
+        const trList = Array.from(tableEl.querySelectorAll('tr')).filter(function (tr) {
+          return belongsToTable(tr, tableEl);
+        });
+        if (trList.length > 0) {
+          const theadMap = new Map();
+          const tbodyMap = new Map();
+          const tfootMap = new Map();
+
+          for (let i = 0; i < trList.length; i++) {
+            const tr = trList[i];
+            const sec = getRowSectionInfo(tr, tableEl);
+            if (sec.el !== tableEl && isNoiseElement(sec.el)) continue;
+            const targetMap = sec.kind === 'THEAD' ? theadMap : sec.kind === 'TFOOT' ? tfootMap : tbodyMap;
+            if (!targetMap.has(sec.el)) targetMap.set(sec.el, []);
+            if (isNoiseElement(tr)) {
+              // Preserve row slot so active rowspan cells from earlier visible rows do not shift later rows
+              targetMap.get(sec.el).push([]);
+              continue;
+            }
+            // Keep aria-hidden & visibility:hidden cell slots so columns never shift left (blanked by extractCellDual)
+            const cells = Array.from(tr.querySelectorAll('th, td')).filter(function (c) {
+              return belongsToRow(c, tr) && !isDisplayNoneOrHiddenAttr(c);
+            });
+            targetMap.get(sec.el).push(cells);
+          }
+
+          const orderedSections = []
+            .concat(Array.from(theadMap.values()))
+            .concat(Array.from(tbodyMap.values()))
+            .concat(Array.from(tfootMap.values()));
+          return buildDualMatricesFromSections(orderedSections, repeatMerged, cellOpts);
+        }
+
+        const ariaRows = Array.from(tableEl.querySelectorAll('[role="row"]')).filter(function (ar) {
+          return belongsToTable(ar, tableEl);
+        });
+        const ariaGroupMap = new Map();
+        for (let i = 0; i < ariaRows.length; i++) {
+          const ar = ariaRows[i];
+          const groupEl = getAriaRowGroup(ar, tableEl);
+          if (groupEl !== tableEl && isNoiseElement(groupEl)) continue;
+          if (!ariaGroupMap.has(groupEl)) ariaGroupMap.set(groupEl, []);
+          if (isNoiseElement(ar)) {
+            ariaGroupMap.get(groupEl).push([]);
+            continue;
+          }
+          const cells = Array.from(
+            ar.querySelectorAll('[role="columnheader"], [role="rowheader"], [role="gridcell"], [role="cell"]')
+          ).filter(function (c) {
+            return belongsToRow(c, ar) && !isDisplayNoneOrHiddenAttr(c);
+          });
+          ariaGroupMap.get(groupEl).push(cells);
+        }
+        return buildDualMatricesFromSections(Array.from(ariaGroupMap.values()), repeatMerged, cellOpts);
+      }
+
+      function tableElementToMatrix(tableEl, repeatMerged, cellOpts) {
+        return tableElementToDualMatrices(tableEl, repeatMerged, cellOpts).matrix;
+      }
+
+      function formatPreEscapedMdMatrix(mdMatrix, firstRowHeader, alignPipes) {
+        if (!mdMatrix || mdMatrix.length === 0) return '';
+        const cols = mdMatrix[0].length;
+        if (cols === 0) return '';
+        const working = mdMatrix.slice();
+        if (firstRowHeader === false) {
+          const synthetic = [];
+          for (let i = 0; i < cols; i++) {
+            synthetic.push('Column ' + (i + 1));
+          }
+          working.unshift(synthetic);
+        }
+        const widths = new Array(cols).fill(3);
+        if (alignPipes) {
+          for (let r = 0; r < working.length; r++) {
+            for (let c = 0; c < cols; c++) {
+              const cell = String(working[r][c] || '');
+              if (cell.length > widths[c]) widths[c] = cell.length;
+            }
+          }
+        }
+        function formatRow(cells) {
+          const padded = cells.map(function (cell, idx) {
+            const s = String(cell || '');
+            return alignPipes ? s.padEnd(widths[idx], ' ') : s;
+          });
+          return '| ' + padded.join(' | ') + ' |';
+        }
+        const divider = widths.map(function (w) {
+          return '-'.repeat(alignPipes ? w : 3);
+        });
+        const lines = [formatRow(working[0]), '| ' + divider.join(' | ') + ' |'];
+        for (let r = 1; r < working.length; r++) {
+          lines.push(formatRow(working[r]));
+        }
+        return lines.join('\n');
+      }
+
+      function extractTableElement(tableEl, baseUrl, ctx, tableDepth, repeatMerged) {
+        const depth = tableDepth || 0;
+        const slotIndex = ctx.tables.length;
+        ctx.tables.push(null);
+        const nestedOutputs = [];
+        const dual = tableElementToDualMatrices(tableEl, Boolean(repeatMerged), {
+          baseUrl: baseUrl || '',
+          ctx: ctx,
+          nestedOutputs: nestedOutputs,
+          tableDepth: depth,
+          repeatMerged: Boolean(repeatMerged)
+        });
+        const matrix = dual.matrix;
+        const mdMatrix = dual.mdMatrix;
+        if (matrix.length > 0 && matrix[0].length > 0) {
+          const md = formatPreEscapedMdMatrix(mdMatrix, ctx.firstRowHeader !== false, Boolean(ctx.alignPipes));
+          const escapeFormulas = ctx.escapeFormulas !== false;
+          const tableIndex = slotIndex + 1;
+          ctx.tables[slotIndex] = {
+            index: tableIndex,
+            rows: matrix.length,
+            cols: matrix[0].length,
+            matrix: matrix,
+            mdMatrix: mdMatrix,
+            markdown: md,
+            csv: buildCsv(matrix, escapeFormulas),
+            tsv: buildTsv(matrix, escapeFormulas)
+          };
+          return { index: tableIndex, blocks: [md].concat(nestedOutputs) };
+        }
+        ctx.tables.splice(slotIndex, 1);
+        for (let i = slotIndex; i < ctx.tables.length; i++) {
+          if (ctx.tables[i]) ctx.tables[i].index = i + 1;
+        }
+        return { index: 0, blocks: nestedOutputs };
+      }
+
+      function extractHtmlOrAriaTableResult(raw, repeatMerged, opts) {
+        const options = opts || {};
         const cleaned = stripBom(raw).trim();
-        if (!cleaned) return [];
+        if (!cleaned) return { matrix: [], mdMatrix: [], tables: [], blocks: [] };
         const parser = new DOMParser();
         const wrapped = /<table[\s>]/i.test(cleaned)
           ? cleaned
           : /<tr[\s>]/i.test(cleaned)
             ? '<table>' + cleaned + '</table>'
-            : cleaned;
+            : /<t[hd][\s>]/i.test(cleaned)
+              ? '<table><tr>' + cleaned + '</tr></table>'
+              : cleaned;
         const doc = parser.parseFromString(wrapped, 'text/html');
-        const tableEl = doc.querySelector('table');
+        const target =
+          doc.querySelector('table') ||
+          doc.querySelector('[role="table"], [role="grid"], [role="treegrid"]') ||
+          doc.body;
+        const ctx = {
+          tables: [],
+          escapeFormulas: options.escapeFormulas !== false,
+          firstRowHeader: options.firstRowHeader !== false,
+          alignPipes: Boolean(options.alignPipes)
+        };
+        const extracted = extractTableElement(target, options.baseUrl || '', ctx, 0, Boolean(repeatMerged));
+        const primary = ctx.tables[0] || null;
+        return {
+          matrix: primary ? primary.matrix : [],
+          mdMatrix: primary ? primary.mdMatrix : [],
+          tables: ctx.tables,
+          blocks: extracted.blocks
+        };
+      }
 
-        if (tableEl) {
-          const trList = Array.from(tableEl.querySelectorAll('tr')).filter(function (tr) {
-            return tr.closest('table') === tableEl;
-          });
-          const rowCellLists = [];
-          for (let r = 0; r < trList.length; r++) {
-            const tr = trList[r];
-            const cells = Array.from(tr.querySelectorAll('th, td')).filter(function (el) {
-              return el.closest('tr') === tr;
-            });
-            if (cells.length > 0) rowCellLists.push(cells);
-          }
-          return buildOccupancyMatrix(rowCellLists, repeatMerged);
-        }
-
-        const ariaRoot = doc.querySelector('[role="table"], [role="grid"]') || doc.body;
-        const ariaRows = Array.from(ariaRoot.querySelectorAll('[role="row"]')).filter(function (rowEl) {
-          const ownerGrid = rowEl.parentElement ? rowEl.parentElement.closest('[role="table"], [role="grid"]') : null;
-          return ariaRoot === doc.body ? !ownerGrid : ownerGrid === ariaRoot;
-        });
-        const ariaCellLists = [];
-        for (let r = 0; r < ariaRows.length; r++) {
-          const rowEl = ariaRows[r];
-          const cells = Array.from(
-            rowEl.querySelectorAll('[role="columnheader"], [role="rowheader"], [role="gridcell"], [role="cell"]')
-          ).filter(function (el) {
-            return el.closest('[role="row"]') === rowEl;
-          });
-          if (cells.length > 0) ariaCellLists.push(cells);
-        }
-        return buildOccupancyMatrix(ariaCellLists, repeatMerged);
+      function parseHtmlOrAriaTable(raw, repeatMerged) {
+        return extractHtmlOrAriaTableResult(raw, repeatMerged).matrix;
       }
 
       function normalizeGrid(rows, normalizeWhitespace) {
@@ -1219,7 +1783,7 @@
 
         const escaped = working.map(function (row) {
           return row.map(function (cell) {
-            return cell.replace(/\r\n|\r|\n/g, ' ').replace(/\\/g, '\\\\').replace(/\|/g, '\\|');
+            return escapeMdCell(cell);
           });
         });
 
@@ -1251,24 +1815,33 @@
       }
 
       function isDangerousSpreadsheetFormula(val) {
-        const trimmed = String(val == null ? '' : val).trim();
-        if (!trimmed) return false;
-        const ch = trimmed.charAt(0);
+        const raw = String(val == null ? '' : val);
+        if (!raw) return false;
+        if (/^[\t\r\n]/.test(raw)) return true;
+        const stripped = raw.replace(LEADING_INVISIBLE_RE, '').trimStart();
+        if (!stripped) return false;
+        const ch = stripped.charAt(0);
         if (ch === '=' || ch === '@') return true;
         if (ch === '+' || ch === '-') {
-          return !/^[+-](?:\d+(?:,\d{3})*(?:\.\d+)?|\.\d+)%?$/.test(trimmed);
+          return !/^[+-](?:\d+(?:,\d{3})*(?:\.\d+)?|\.\d+)%?$/.test(stripped.trim());
         }
         return false;
       }
 
       function guardFormulaField(val, escapeFormulas) {
-        const s = String(val == null ? '' : val);
-        if (!escapeFormulas || !isDangerousSpreadsheetFormula(s)) return s;
-        return "'" + s;
+        const raw = String(val == null ? '' : val);
+        if (!escapeFormulas) return raw;
+        const cleaned = raw.replace(LEADING_INVISIBLE_RE, '');
+        if (!isDangerousSpreadsheetFormula(cleaned)) return raw;
+        return "'" + cleaned.replace(/[\r\n]+/g, ' ');
       }
 
       function formatCsvField(val, escapeFormulas) {
-        const s = guardFormulaField(val, escapeFormulas);
+        const clean = String(val == null ? '' : val)
+          .replace(INVISIBLE_CTRL_RE, '')
+          .replace(/[\t\r\n]+/g, ' ')
+          .trim();
+        const s = guardFormulaField(clean, escapeFormulas);
         if (/[",\r\n]/.test(s)) {
           return '"' + s.replace(/"/g, '""') + '"';
         }
@@ -1276,7 +1849,11 @@
       }
 
       function formatTsvField(val, escapeFormulas) {
-        const s = guardFormulaField(val, escapeFormulas);
+        const clean = String(val == null ? '' : val)
+          .replace(INVISIBLE_CTRL_RE, '')
+          .replace(/[\t\r\n]+/g, ' ')
+          .trim();
+        const s = guardFormulaField(clean, escapeFormulas);
         if (/["\t\r\n]/.test(s)) {
           return '"' + s.replace(/"/g, '""') + '"';
         }
@@ -1288,7 +1865,7 @@
           return row.map(function (cell) {
             return formatCsvField(cell, escapeFormulas);
           }).join(',');
-        }).join('\n');
+        }).join('\r\n');
       }
 
       function buildTsv(grid, escapeFormulas) {
@@ -1307,9 +1884,16 @@
         detectedBadgeEl.textContent = (selectedMode === 'auto' ? 'Detected: ' : 'Mode: ') + (modeLabelMap[effectiveMode] || 'CSV');
 
         const repeatMerged = optRepeatMergedEl.checked;
+        const escapeFormulas = !optEscapeFormulasEl || optEscapeFormulasEl.checked;
         let parsed = [];
+        let htmlResult = null;
         if (effectiveMode === 'html') {
-          parsed = parseHtmlOrAriaTable(raw, repeatMerged);
+          htmlResult = extractHtmlOrAriaTableResult(raw, repeatMerged, {
+            escapeFormulas: escapeFormulas,
+            firstRowHeader: optHeaderEl.checked,
+            alignPipes: optAlignEl.checked
+          });
+          parsed = htmlResult.matrix;
         } else if (effectiveMode === 'tsv') {
           parsed = parseDelimited(raw, '\t');
         } else {
@@ -1317,9 +1901,11 @@
         }
 
         const grid = normalizeGrid(parsed, optTrimEl.checked);
-        const escapeFormulas = !optEscapeFormulasEl || optEscapeFormulasEl.checked;
+        const mdOut = htmlResult && htmlResult.blocks.length > 0
+          ? htmlResult.blocks.join('\n\n')
+          : buildMarkdown(grid, optHeaderEl.checked, optAlignEl.checked);
         currentOutputs = {
-          markdown: buildMarkdown(grid, optHeaderEl.checked, optAlignEl.checked),
+          markdown: mdOut,
           tsv: buildTsv(grid, escapeFormulas),
           csv: buildCsv(grid, escapeFormulas)
         };
@@ -1336,7 +1922,8 @@
 
         const rowCount = grid.length;
         const colCount = rowCount > 0 ? grid[0].length : 0;
-        statsOutputEl.textContent = rowCount + ' rows · ' + colCount + ' columns · ' + outText.length + ' chars';
+        const nestedNote = htmlResult && htmlResult.tables.length > 1 ? ' · ' + htmlResult.tables.length + ' tables' : '';
+        statsOutputEl.textContent = rowCount + ' rows · ' + colCount + ' columns' + nestedNote + ' · ' + outText.length + ' chars';
       }
 
       tabBtns.forEach(function (btn) {

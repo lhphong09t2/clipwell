@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#090d16" />
+  <meta name="theme-color" content="#FAF8F4" />
   <title>Clipwell — Clean Markdown, Intact Table &amp; AI Thread Clipper for Chrome</title>
   <meta name="description" content="Clip documentation, intact HTML colspan/rowspan &amp; ARIA tables, and ChatGPT/Claude threads to clean Markdown, CSV, or Google Sheets TSV locally with Chrome activeTab privacy." />
   <link rel="canonical" href="https://lhphong09t2.github.io/clipwell/" />
-  <link rel="icon" href="./favicon.ico" sizes="16x16 32x32" />
-  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="./favicon.ico" sizes="any" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
 
   <meta property="og:type" content="website" />
@@ -37,7 +37,7 @@
         "name": "Clipwell — Clean Markdown, Table & AI Thread Clipper",
         "operatingSystem": "Chrome, Brave, Edge, Arc, Chromium",
         "applicationCategory": "BrowserApplication",
-        "softwareVersion": "1.0.0",
+        "softwareVersion": "1.1.0",
         "url": "https://lhphong09t2.github.io/clipwell/",
         "installUrl": "https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma",
         "downloadUrl": "https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma",
@@ -51,7 +51,7 @@
           "email": "lhphong09t2@gmail.com",
           "sameAs": [
             "https://www.youtube.com/@FlowBenchLab",
-            "https://www.facebook.com/profile.php?id=61596629317479"
+            "https://www.facebook.com/flowbenchlab"
           ]
         },
         "offers": [
@@ -106,34 +106,69 @@
 
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #090d16;
-      --surface: #0f1624;
-      --surface-2: #141d2f;
-      --card: #182338;
-      --border: rgba(148, 163, 184, 0.15);
-      --border-strong: rgba(148, 163, 184, 0.28);
-      --border-emerald: rgba(16, 185, 129, 0.42);
-      --text: #f8fafc;
-      --text-soft: #cbd5e1;
-      --muted: #94a3b8;
-      --subtle: #64748b;
-      --accent: #10b981;
-      --accent-hover: #34d399;
-      --accent-ink: #032215;
+      color-scheme: light;
+      --bg: #FAF8F4;
+      --surface: #FFFFFF;
+      --surface-2: #F0ECE3;
+      --card: #FFFFFF;
+      --footer-bg: #F3EFE7;
+      --header-bg: rgba(250, 248, 244, 0.92);
+      --showcase-bar-bg: #F4F0E8;
+      --border: #E6E2D8;
+      --border-strong: #D2CCC0;
+      --border-accent: rgba(217, 67, 34, 0.36);
+      --text: #18181B;
+      --text-soft: #292524;
+      --muted: #57534E;
+      --subtle: #78716C;
+      --accent: #D94322;
+      --accent-hover: #BC3315;
+      --accent-soft: #9F290E;
+      --accent-wash: rgba(217, 67, 34, 0.09);
+      --accent-wash-strong: rgba(217, 67, 34, 0.14);
+      --accent-ink: #FFFFFF;
+      --shadow-card: 0 2px 10px rgba(24, 24, 27, 0.06), 0 1px 2px rgba(24, 24, 27, 0.04);
+      --shadow-elev: 0 18px 42px rgba(24, 24, 27, 0.12);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #141413;
+        --surface: #1E1D1B;
+        --surface-2: #272522;
+        --card: #1E1D1B;
+        --footer-bg: #0E0E0D;
+        --header-bg: rgba(20, 20, 19, 0.92);
+        --showcase-bar-bg: #1A1917;
+        --border: #2E2C28;
+        --border-strong: #413E38;
+        --border-accent: rgba(240, 90, 57, 0.42);
+        --text: #F5F3EE;
+        --text-soft: #E7E5E4;
+        --muted: #A8A29E;
+        --subtle: #78716C;
+        --accent: #F05A39;
+        --accent-hover: #FF785A;
+        --accent-soft: #FF947A;
+        --accent-wash: rgba(240, 90, 57, 0.14);
+        --accent-wash-strong: rgba(240, 90, 57, 0.22);
+        --accent-ink: #141413;
+        --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.35);
+        --shadow-elev: 0 24px 48px rgba(0, 0, 0, 0.55);
+      }
     }
     *, *::before, *::after { box-sizing: border-box; }
     html {
-      background-color: #090d16;
+      background-color: var(--bg);
       scroll-behavior: smooth;
       scroll-padding-top: 84px;
     }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
-      background-color: #090d16;
+      background-color: var(--bg);
       background-image:
-        radial-gradient(920px 420px at 50% 0%, rgba(16, 185, 129, 0.13), #090d16 72%);
+        radial-gradient(920px 420px at 50% 0%, var(--accent-wash), var(--bg) 72%);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -147,7 +182,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background-color: rgba(9, 13, 22, 0.88);
+      background-color: var(--header-bg);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
@@ -176,7 +211,7 @@
       min-height: 44px;
     }
     .brand:hover { text-decoration: none; color: var(--text); }
-    .brand svg { flex-shrink: 0; border-radius: 7px; }
+    .brand svg, .brand img { flex-shrink: 0; border-radius: 7px; }
     .desktop-nav {
       display: flex;
       align-items: center;
@@ -256,11 +291,11 @@
       max-height: calc(100dvh - 76px);
       overflow-y: auto;
       overscroll-behavior: contain;
-      background-color: #0f1624;
+      background-color: var(--surface);
       border: 1px solid var(--border-strong);
       border-radius: 14px;
       padding: 12px;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65);
+      box-shadow: var(--shadow-elev);
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -323,9 +358,9 @@
       gap: 8px;
       padding: 5px 13px;
       border-radius: 999px;
-      background-color: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.32);
-      color: #6ee7b7;
+      background-color: var(--accent-wash);
+      border: 1px solid var(--border-accent);
+      color: var(--accent-soft);
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.05em;
@@ -384,7 +419,7 @@
       background-color: var(--accent);
       color: var(--accent-ink);
       border: 1px solid var(--accent);
-      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.22);
+      box-shadow: 0 6px 18px var(--accent-wash-strong);
     }
     .btn-primary:hover {
       background-color: var(--accent-hover);
@@ -424,11 +459,11 @@
       margin: 0 auto;
       border-radius: 18px;
       padding: 8px;
-      background-color: rgba(20, 29, 47, 0.72);
+      background-color: var(--showcase-bar-bg);
       border: 1px solid var(--border-strong);
       box-shadow:
-        0 28px 70px rgba(0, 0, 0, 0.58),
-        0 0 0 1px rgba(16, 185, 129, 0.12);
+        var(--shadow-elev),
+        0 0 0 1px var(--border-accent);
     }
     .showcase-bar {
       display: flex;
@@ -453,7 +488,7 @@
     }
     .dot-r { background-color: #ef4444; }
     .dot-y { background-color: #f59e0b; }
-    .dot-g { background-color: #10b981; }
+    .dot-g { background-color: #22c55e; }
     .showcase-url {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 12px;
@@ -608,8 +643,8 @@
     }
     .plan-card.pro {
       background-color: var(--surface-2);
-      border-color: var(--border-emerald);
-      box-shadow: 0 18px 44px rgba(16, 185, 129, 0.09);
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-elev);
     }
     .plan-top {
       display: flex;
@@ -684,7 +719,7 @@
     .compare-table tr:last-child td { border-bottom: none; }
     .compare-table td { color: var(--text-soft); }
     .compare-table td.muted-cell { color: var(--muted); }
-    .compare-table td.pro-val { color: #6ee7b7; font-weight: 600; }
+    .compare-table td.pro-val { color: var(--accent-soft); font-weight: 600; }
     .compare-table code {
       background-color: var(--bg);
       border: 1px solid var(--border);
@@ -714,8 +749,8 @@
       width: 30px;
       height: 30px;
       border-radius: 8px;
-      background-color: rgba(16, 185, 129, 0.14);
-      border: 1px solid var(--border-emerald);
+      background-color: var(--accent-wash-strong);
+      border: 1px solid var(--border-accent);
       color: var(--accent-hover);
       font-weight: 800;
       font-size: 13.5px;
@@ -814,7 +849,7 @@
     /* Unified Footer */
     .site-footer {
       border-top: 1px solid var(--border);
-      background-color: #070a12;
+      background-color: var(--footer-bg);
       padding: 48px 20px 36px;
     }
     .footer-inner {
@@ -885,16 +920,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="./">
-        <svg viewBox="0 0 128 128" width="28" height="28" aria-hidden="true">
-          <rect x="0" y="0" width="128" height="128" rx="28" fill="#090D16"/>
-          <rect x="18" y="24" width="92" height="86" rx="16" fill="#111827" stroke="#10B981" stroke-width="6"/>
-          <rect x="42" y="12" width="44" height="18" rx="9" fill="#10B981"/>
-          <rect x="30" y="44" width="68" height="13" rx="4" fill="#F8FAFC"/>
-          <rect x="30" y="65" width="40" height="11" rx="3.5" fill="#10B981"/>
-          <rect x="76" y="65" width="22" height="11" rx="3.5" fill="#64748B"/>
-          <rect x="30" y="84" width="40" height="11" rx="3.5" fill="#94A3B8"/>
-          <rect x="76" y="84" width="22" height="11" rx="3.5" fill="#34D399"/>
-        </svg>
+        <img src="./icon.svg" alt="Clipwell — The Hash Clip" width="28" height="28" />
         <span>Clipwell</span>
       </a>
 
@@ -926,6 +952,7 @@
           <a href="./privacy.html">Privacy Policy</a>
           <div class="mobile-cta-group">
             <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
+        <a class="btn btn-secondary" href="https://microsoftedge.microsoft.com/addons/detail/hjmafldhdphpjmkliibmalkfpceifbbp" target="_blank" rel="noopener">Add to Edge &mdash; Free</a>
             <a class="btn btn-secondary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Unlock Pro Lifetime &mdash; $29</a>
           </div>
         </nav>
@@ -951,6 +978,9 @@
           </svg>
           <span>Add to Chrome &mdash; Free</span>
         </a>
+        <a class="btn btn-secondary" href="https://microsoftedge.microsoft.com/addons/detail/hjmafldhdphpjmkliibmalkfpceifbbp" target="_blank" rel="noopener">
+          <span>Add to Edge &mdash; Free</span>
+        </a>
         <a class="btn btn-secondary" href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">
           <span>Unlock Pro Lifetime &mdash; $29</span>
         </a>
@@ -964,7 +994,7 @@
             <span class="dot-y"></span>
             <span class="dot-g"></span>
           </div>
-          <div class="showcase-url">Clipwell v1.0.0 &mdash; Active Tab Local Extractor</div>
+          <div class="showcase-url">Clipwell v1.1 &mdash; Active Tab Local Extractor</div>
           <div class="showcase-status">0 KB Telemetry</div>
         </div>
         <div class="showcase-img-wrap">
@@ -1060,7 +1090,7 @@
               <li>ChatGPT &amp; Claude conversation turn separation</li>
             </ul>
           </div>
-          <a class="btn btn-secondary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;"><a class="btn btn-secondary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a><a class="btn btn-secondary" href="https://microsoftedge.microsoft.com/addons/detail/hjmafldhdphpjmkliibmalkfpceifbbp" target="_blank" rel="noopener">Add to Edge &mdash; Free</a></div>
         </div>
 
         <div class="plan-card pro">
@@ -1241,6 +1271,7 @@
       </div>
       <div class="hero-ctas" style="margin-bottom:0;">
         <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Add to Chrome &mdash; Free</a>
+        <a class="btn btn-secondary" href="https://microsoftedge.microsoft.com/addons/detail/hjmafldhdphpjmkliibmalkfpceifbbp" target="_blank" rel="noopener">Add to Edge &mdash; Free</a>
         <a class="btn btn-secondary" href="mailto:lhphong09t2@gmail.com">Email Support</a>
       </div>
     </section>
@@ -1251,16 +1282,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand" href="./">
-            <svg viewBox="0 0 128 128" width="26" height="26" aria-hidden="true">
-              <rect x="0" y="0" width="128" height="128" rx="28" fill="#090D16"/>
-              <rect x="18" y="24" width="92" height="86" rx="16" fill="#111827" stroke="#10B981" stroke-width="6"/>
-              <rect x="42" y="12" width="44" height="18" rx="9" fill="#10B981"/>
-              <rect x="30" y="44" width="68" height="13" rx="4" fill="#F8FAFC"/>
-              <rect x="30" y="65" width="40" height="11" rx="3.5" fill="#10B981"/>
-              <rect x="76" y="65" width="22" height="11" rx="3.5" fill="#64748B"/>
-              <rect x="30" y="84" width="40" height="11" rx="3.5" fill="#94A3B8"/>
-              <rect x="76" y="84" width="22" height="11" rx="3.5" fill="#34D399"/>
-            </svg>
+            <img src="./icon.svg" alt="Clipwell — The Hash Clip" width="26" height="26" />
             <span>Clipwell</span>
           </a>
           <p>Local-first Chrome Manifest V3 Markdown, HTML/ARIA table, and AI thread clipper by FlowBench Lab.</p>
@@ -1270,6 +1292,7 @@
           <h3>Product</h3>
           <ul>
             <li><a href="https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma" target="_blank" rel="noopener">Chrome Web Store</a></li>
+            <li><a href="https://microsoftedge.microsoft.com/addons/detail/hjmafldhdphpjmkliibmalkfpceifbbp" target="_blank" rel="noopener">Microsoft Edge Add-ons</a></li>
             <li><a href="./table-cleaner.html">Free Table Cleaner</a></li>
             <li><a href="https://buy.polar.sh/polar_cl_i4NyBpdrGuxRZELAwmBOoRNMuf05hKCQvJFvT0vwi3y" target="_blank" rel="noopener">Clipwell Pro ($29)</a></li>
             <li><a href="#activate">License Activation</a></li>
@@ -1290,14 +1313,14 @@
           <h3>FlowBench Lab</h3>
           <ul>
             <li><a href="https://www.youtube.com/@FlowBenchLab" target="_blank" rel="noopener">YouTube (@FlowBenchLab)</a></li>
-            <li><a href="https://www.facebook.com/profile.php?id=61596629317479" target="_blank" rel="noopener">Facebook Page</a></li>
+            <li><a href="https://www.facebook.com/flowbenchlab" target="_blank" rel="noopener">Facebook Page</a></li>
             <li><a href="mailto:lhphong09t2@gmail.com">lhphong09t2@gmail.com</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; 2026 FlowBench Lab &middot; Clipwell v1.0.0</span>
+        <span>&copy; 2026 FlowBench Lab &middot; Clipwell v1.1</span>
         <span>100% Local DOM Parsing &middot; Zero All-Sites Permissions</span>
       </div>
     </div>
