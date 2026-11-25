@@ -502,6 +502,12 @@
       font-size: 13px;
       line-height: 1.55;
     }
+    #clean-output {
+      white-space: pre;
+      overflow-x: auto;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
     textarea:focus, select:focus {
       outline: 2px solid var(--accent);
       outline-offset: 1px;
@@ -781,7 +787,7 @@
                 <button type="button" class="secondary" id="download-btn">Download</button>
               </div>
             </div>
-            <textarea id="clean-output" readonly spellcheck="false" aria-live="polite"></textarea>
+            <textarea id="clean-output" wrap="off" readonly spellcheck="false" aria-live="polite"></textarea>
           </div>
         </div>
 
