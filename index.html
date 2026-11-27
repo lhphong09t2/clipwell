@@ -37,7 +37,7 @@
         "name": "Clipwell — Clean Markdown, Table & AI Thread Clipper",
         "operatingSystem": "Chrome, Brave, Edge, Arc, Chromium",
         "applicationCategory": "BrowserApplication",
-        "softwareVersion": "1.1.0",
+        "softwareVersion": "1.1.1",
         "url": "https://lhphong09t2.github.io/clipwell/",
         "installUrl": "https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma",
         "downloadUrl": "https://chromewebstore.google.com/detail/clipwell-%E2%80%94-clean-markdown/blkklmemnnfknlnjldhcklcpcipckmma",
@@ -1013,7 +1013,7 @@
             <span class="dot-y"></span>
             <span class="dot-g"></span>
           </div>
-          <div class="showcase-url">Clipwell v1.1 &mdash; Active Tab Local Extractor</div>
+          <div class="showcase-url">Clipwell v1.1.1 &mdash; Active Tab Local Extractor</div>
           <div class="showcase-status">0 KB Telemetry</div>
         </div>
         <div class="showcase-img-wrap">
@@ -1046,11 +1046,12 @@
           <div>
             <span class="bento-badge">Least-Privilege Security</span>
             <h3>Zero <code>&lt;all_urls&gt;</code> Host Access</h3>
-            <p>Uses Chrome Manifest V3 <code>activeTab</code> + <code>scripting</code> exclusively when you click the toolbar icon. Zero background service-worker scraping, zero analytics SDKs, and zero remote DOM uploads.</p>
+            <p>Uses Chrome Manifest V3 <code>activeTab</code> + <code>scripting</code> exclusively when you click the toolbar icon, plus <code>https://api.polar.sh/*</code> host access used solely when an optional Pro license key is activated or revalidated. Zero background service-worker scraping, zero analytics SDKs, and zero remote DOM uploads.</p>
           </div>
           <pre class="code-mini">"permissions": [
   "activeTab", "scripting", "storage"
-]</pre>
+],
+"host_permissions": ["https://api.polar.sh/*"]</pre>
         </article>
 
         <article class="bento-card span-5">
@@ -1343,6 +1344,7 @@
         <div class="footer-col">
           <h3>FlowBench Lab</h3>
           <ul>
+            <li><a href="https://lhphong09t2.github.io/flowbench/python-lab/?lesson=01" target="_blank" rel="noopener">FlowBench Python 3.12 Web Lab</a></li>
             <li><a href="https://www.youtube.com/@FlowBenchLab" target="_blank" rel="noopener">YouTube (@FlowBenchLab)</a></li>
             <li><a href="https://www.facebook.com/flowbenchlab" target="_blank" rel="noopener">Facebook Page</a></li>
             <li><a href="mailto:lhphong09t2@gmail.com">lhphong09t2@gmail.com</a></li>
@@ -1351,7 +1353,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; 2026 FlowBench Lab &middot; Clipwell v1.1</span>
+        <span>&copy; 2026 FlowBench Lab &middot; Clipwell v1.1.1</span>
         <span>100% Local DOM Parsing &middot; Zero All-Sites Permissions</span>
       </div>
     </div>
